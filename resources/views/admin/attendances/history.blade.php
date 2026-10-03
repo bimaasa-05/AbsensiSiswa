@@ -37,7 +37,7 @@
                 </select>
             </div>
             <div class="col-md-1">
-                <button type="submit" class="btn btn-sm btn-outline-secondary w-100">Cari</button>
+                <button type="submit" class="btn btn-sm btn-outline-secondary w-100"><i class="bi bi-search me-1"></i>Cari</button>
             </div>
         </form>
     </div>
@@ -70,11 +70,11 @@
                             <td>{{ $attendance->method === 'qr' ? 'QR Code' : ucfirst((string) $attendance->method) }}</td>
                             <td>
                                 <span class="badge {{ $attendance->status === 'present' ? 'text-bg-success' : ($attendance->status === 'late' ? 'text-bg-warning' : 'text-bg-secondary') }}">
-                                    {{ \App\Models\Attendance::statusLabel($attendance->status) }}
+                                    <i class="bi {{ $attendance->status === 'present' ? 'bi-check-circle-fill' : ($attendance->status === 'late' ? 'bi-alarm-fill' : 'bi-dash-circle-fill') }} me-1"></i>{{ \App\Models\Attendance::statusLabel($attendance->status) }}
                                 </span>
                             </td>
                             <td class="text-end pe-3">
-                                <a href="{{ route('admin.corrections.edit', $attendance) }}" class="btn btn-sm btn-outline-secondary">Koreksi</a>
+                                <a href="{{ route('admin.corrections.edit', $attendance) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square me-1"></i>Koreksi</a>
                             </td>
                         </tr>
                     @empty
