@@ -3,46 +3,66 @@
 @section('title', 'Masuk')
 
 @section('content')
-<div class="row justify-content-center" style="margin-top: 10vh;">
-    <div class="col-md-5 col-lg-4">
-        <div class="text-center mb-4">
-            <i class="bi bi-mortarboard-fill fs-1" style="color: #1f4e79;"></i>
-            <h1 class="h4 fw-bold mb-1 mt-2">Sistem Absensi Siswa</h1>
-            <p class="text-muted small mb-0">Masuk untuk mengelola kehadiran siswa</p>
+<div class="container-fluid login-wrap">
+    <div class="row g-0" style="min-height: 100vh;">
+        <div class="col-md-6 d-none d-md-flex flex-column justify-content-center login-panel p-5">
+            <div style="max-width: 420px; margin: 0 auto;">
+                <i class="bi bi-mortarboard-fill brand-icon"></i>
+                <h1 class="h3 fw-bold mt-3 mb-2">Sistem Absensi Siswa</h1>
+                <p class="mb-4" style="color: #b9c7d4;">Pencatatan kehadiran digital dengan QR Code dan fingerprint, terhubung langsung ke orang tua/wali.</p>
+                <hr>
+                <div class="login-info d-flex flex-column gap-2 mt-4">
+                    <span><i class="bi bi-qr-code-scan me-2"></i>Absensi QR Code &amp; fingerprint</span>
+                    <span><i class="bi bi-whatsapp me-2"></i>Notifikasi otomatis ke orang tua</span>
+                    <span><i class="bi bi-clipboard-data me-2"></i>Rekap kehadiran per kelas</span>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <div class="card-body p-4">
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
+        <div class="col-md-6 d-flex align-items-center justify-content-center login-form-col p-4">
+            <div class="w-100" style="max-width: 380px;">
+                <div class="d-md-none text-center mb-4">
+                    <i class="bi bi-mortarboard-fill fs-1" style="color: #1b3a5c;"></i>
+                    <h1 class="h5 fw-bold mt-2 mb-0">Sistem Absensi Siswa</h1>
+                </div>
 
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" name="email" id="email" value="{{ old('email') }}"
-                            class="form-control @error('email') is-invalid @enderror"
-                            placeholder="nama@sekolah.sch.id" required autofocus>
-                        @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                <h2 class="h5 fw-bold mb-1">Masuk</h2>
+                <p class="text-muted small mb-4">Kelola kehadiran siswa sekolah</p>
+
+                <div class="card">
+                    <div class="card-body p-4">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="email" id="email" value="{{ old('email') }}"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    placeholder="nama@sekolah.sch.id" required autofocus>
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Kata Sandi</label>
+                                <input type="password" name="password" id="password"
+                                    class="form-control @error('password') is-invalid @enderror"
+                                    placeholder="Masukkan kata sandi" required>
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input type="checkbox" name="remember" id="remember" class="form-check-input" value="1">
+                                <label for="remember" class="form-check-label">Ingat saya</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right me-1"></i>Masuk</button>
+                        </form>
                     </div>
-
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Kata Sandi</label>
-                        <input type="password" name="password" id="password"
-                            class="form-control @error('password') is-invalid @enderror"
-                            placeholder="Masukkan kata sandi" required>
-                        @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-check mb-3">
-                        <input type="checkbox" name="remember" id="remember" class="form-check-input" value="1">
-                        <label for="remember" class="form-check-label">Ingat saya</label>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right me-1"></i>Masuk</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
