@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Terapkan</button>
+                <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="bi bi-funnel me-1"></i>Terapkan</button>
                 <a href="{{ route('admin.attendances.today') }}" class="btn btn-sm btn-link">Atur ulang</a>
             </div>
         </form>
@@ -64,14 +64,16 @@
                             <td>{{ $attendance->method === 'qr' ? 'QR Code' : ucfirst((string) $attendance->method) }}</td>
                             <td>
                                 <span class="badge {{ $attendance->status === 'present' ? 'text-bg-success' : ($attendance->status === 'late' ? 'text-bg-warning' : 'text-bg-secondary') }}">
-                                    {{ \App\Models\Attendance::statusLabel($attendance->status) }}
+                                    <i class="bi {{ $attendance->status === 'present' ? 'bi-check-circle-fill' : ($attendance->status === 'late' ? 'bi-alarm-fill' : 'bi-dash-circle-fill') }} me-1"></i>{{ \App\Models\Attendance::statusLabel($attendance->status) }}
                                 </span>
                             </td>
                             <td>
-                                <span class="badge text-bg-secondary">{{ $attendance->check_in_notification_status }}</span>
+                                <span class="badge text-bg-secondary">
+                                    <i class="bi {{ $attendance->check_in_notification_status === 'sent' ? 'bi-check-lg' : ($attendance->check_in_notification_status === 'failed' ? 'bi-x-lg' : 'bi-clock') }} me-1"></i>{{ $attendance->check_in_notification_status }}
+                                </span>
                             </td>
                             <td class="text-end pe-3">
-                                <a href="{{ route('admin.corrections.edit', $attendance) }}" class="btn btn-sm btn-outline-secondary">Koreksi</a>
+                                <a href="{{ route('admin.corrections.edit', $attendance) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square me-1"></i>Koreksi</a>
                             </td>
                         </tr>
                     @empty
