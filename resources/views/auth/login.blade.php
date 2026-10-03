@@ -6,7 +6,8 @@
 <div class="row justify-content-center" style="margin-top: 10vh;">
     <div class="col-md-5 col-lg-4">
         <div class="text-center mb-4">
-            <h1 class="h4 fw-bold mb-1">Sistem Absensi Siswa</h1>
+            <i class="bi bi-mortarboard-fill fs-1" style="color: #1f4e79;"></i>
+            <h1 class="h4 fw-bold mb-1 mt-2">Sistem Absensi Siswa</h1>
             <p class="text-muted small mb-0">Masuk untuk mengelola kehadiran siswa</p>
         </div>
 
@@ -40,7 +41,7 @@
                         <label for="remember" class="form-check-label">Ingat saya</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100">Masuk</button>
+                    <button type="submit" class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right me-1"></i>Masuk</button>
                 </form>
             </div>
         </div>
