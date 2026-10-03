@@ -3,7 +3,11 @@
 @section('title', 'Belum Absen')
 
 @section('content')
-<p class="text-muted">{{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }} — siswa aktif yang belum tercatat melakukan absensi hari ini. Daftar ini bukan vonis alpha, melainkan bahan monitoring sesuai kebijakan sekolah.</p>
+<div class="page-header">
+    <h1>Belum Absen</h1>
+    <p>{{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }} — siswa aktif yang belum tercatat melakukan absensi hari ini.</p>
+</div>
+<div class="alert alert-info py-2 small"><i class="bi bi-info-circle me-1"></i>Daftar ini bukan vonis alpha, melainkan bahan monitoring sesuai kebijakan sekolah.</div>
 
 <div class="card mb-3">
     <div class="card-body">
