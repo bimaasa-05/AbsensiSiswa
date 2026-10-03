@@ -31,7 +31,7 @@
                     </select>
                 </div>
                 <div class="col-md-4 d-flex align-items-end">
-                    <button type="submit" class="btn btn-primary">Proses Absensi</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-fingerprint me-1"></i>Proses Absensi</button>
                 </div>
             </form>
         @endif
