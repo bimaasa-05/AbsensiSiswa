@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GuardianController;
 use App\Http\Controllers\Admin\SchoolClassController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,11 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/admin/classes', SchoolClassController::class)
         ->names('admin.classes')
+        ->except(['show']);
+
+    Route::resource('/admin/guardians', GuardianController::class)
+        ->names('admin.guardians')
+        ->parameter('guardians', 'guardian')
         ->except(['show']);
 
     // Halaman orang tua akan dibangun pada Phase 5 (Parent Monitoring).

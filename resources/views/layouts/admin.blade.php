@@ -84,7 +84,7 @@
                 <a href="#" class="nav-link"><i class="bi bi-people me-2"></i>Data Siswa</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="bi bi-person-vcard me-2"></i>Data Orang Tua</a>
+                <a href="{{ route('admin.guardians.index') }}" class="nav-link {{ request()->routeIs('admin.guardians.*') ? 'active' : '' }}"><i class="bi bi-person-vcard me-2"></i>Data Orang Tua</a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('admin.classes.index') }}" class="nav-link {{ request()->routeIs('admin.classes.*') ? 'active' : '' }}"><i class="bi bi-building me-2"></i>Data Kelas</a>
