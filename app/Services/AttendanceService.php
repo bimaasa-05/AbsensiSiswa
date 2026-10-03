@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Jobs\SendAttendanceWhatsAppNotification;
 use App\Models\Attendance;
+use App\Models\NotificationLog;
 use App\Models\SchoolSetting;
 use App\Models\Student;
 use Carbon\Carbon;
@@ -53,6 +55,8 @@ class AttendanceService
             $attendance->check_in_notification_status = 'pending';
             $attendance->save();
 
+            SendAttendanceWhatsAppNotification::dispatch($attendance->id, NotificationLog::TYPE_CHECK_IN);
+
             return ['result' => self::RESULT_SUCCESS, 'attendance' => $attendance];
         });
     }
@@ -88,6 +92,8 @@ class AttendanceService
             $attendance->check_out = $now->format('H:i:s');
             $attendance->check_out_notification_status = 'pending';
             $attendance->save();
+
+            SendAttendanceWhatsAppNotification::dispatch($attendance->id, NotificationLog::TYPE_CHECK_OUT);
 
             return ['result' => self::RESULT_SUCCESS, 'attendance' => $attendance];
         });
