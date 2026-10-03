@@ -1,0 +1,66 @@
+@extends('layouts.admin')
+
+@section('title', 'Rekap Absensi')
+
+@section('content')
+<div class="card mb-3">
+    <div class="card-body">
+        <form method="GET" action="{{ route('admin.attendances.recap') }}" class="row g-2">
+            <div class="col-md-3">
+                <input type="date" name="start_date" value="{{ $start }}" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="end_date" value="{{ $end }}" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-3">
+                <select name="class_id" class="form-select form-select-sm">
+                    <option value="">Semua Kelas</option>
+                    @foreach ($classes as $class)
+                        <option value="{{ $class->id }}" @selected(request('class_id') == $class->id)>{{ $class->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-sm btn-outline-secondary">Terapkan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th class="ps-3">Nama</th>
+                        <th>Kelas</th>
+                        <th class="text-center">Hadir</th>
+                        <th class="text-center">Terlambat</th>
+                        <th class="text-center">Izin</th>
+                        <th class="text-center">Sakit</th>
+                        <th class="text-center pe-3">Alpha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($recap as $row)
+                        <tr>
+                            <td class="ps-3 fw-medium">{{ $row['student']->name }}</td>
+                            <td>{{ $row['student']->schoolClass->name ?? '-' }}</td>
+                            <td class="text-center">{{ $row['present'] }}</td>
+                            <td class="text-center">{{ $row['late'] }}</td>
+                            <td class="text-center">{{ $row['permission'] }}</td>
+                            <td class="text-center">{{ $row['sick'] }}</td>
+                            <td class="text-center pe-3">{{ $row['absent'] }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center text-muted py-4">Belum ada data siswa.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
