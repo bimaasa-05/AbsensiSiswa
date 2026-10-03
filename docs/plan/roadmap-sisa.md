@@ -42,7 +42,7 @@ Struktur kode siap (`WA_DRIVER=http`). Langkah:
 
 ## Catatan hosting (cPanel)
 
-- File `database.sql` di root project: struktur + data master
+- File `AbsensiSiswa-database.sql` di root project: struktur + data master
   (2 users, 5 kelas, 3 orang tua, 5 siswa, 1 pengaturan), tanpa data absensi.
   Import via phpMyAdmin ke database apa pun (tidak mengikat nama DB).
 - Tabel `migrations` ikut ter-dump agar `php artisan migrate` tidak jalan ulang.
