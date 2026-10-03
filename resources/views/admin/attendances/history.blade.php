@@ -3,6 +3,10 @@
 @section('title', 'Riwayat Absensi')
 
 @section('content')
+<div class="page-header">
+    <h1>Riwayat Absensi</h1>
+    <p>Cari dan telusuri riwayat kehadiran siswa.</p>
+</div>
 <div class="card mb-3">
     <div class="card-body">
         <form method="GET" action="{{ route('admin.attendances.history') }}" class="row g-2">
