@@ -52,7 +52,7 @@
                             <td>{{ $log->type === 'check_in' ? 'Masuk' : 'Pulang' }}</td>
                             <td>
                                 <span class="badge {{ $log->status === 'sent' ? 'text-bg-success' : ($log->status === 'failed' ? 'text-bg-danger' : 'text-bg-secondary') }}">
-                                    {{ $log->status === 'sent' ? 'Terkirim' : ($log->status === 'failed' ? 'Gagal' : 'Pending') }}
+                                    <i class="bi {{ $log->status === 'sent' ? 'bi-check-circle-fill' : ($log->status === 'failed' ? 'bi-x-circle-fill' : 'bi-clock-fill') }} me-1"></i>{{ $log->status === 'sent' ? 'Terkirim' : ($log->status === 'failed' ? 'Gagal' : 'Pending') }}
                                 </span>
                             </td>
                             <td class="pe-3 small text-muted">{{ $log->error_message ?? '-' }}</td>
