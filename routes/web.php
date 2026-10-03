@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuardianController;
 use App\Http\Controllers\Admin\SchoolClassController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,13 @@ Route::middleware('auth')->group(function () {
         ->names('admin.guardians')
         ->parameter('guardians', 'guardian')
         ->except(['show']);
+
+    Route::resource('/admin/students', StudentController::class)
+        ->names('admin.students')
+        ->parameter('students', 'student');
+
+    Route::post('/admin/students/{student}/qr/regenerate', [StudentController::class, 'regenerateQr'])
+        ->name('admin.students.qr.regenerate');
 
     // Halaman orang tua akan dibangun pada Phase 5 (Parent Monitoring).
     Route::get('/orang-tua/dashboard', function () {
