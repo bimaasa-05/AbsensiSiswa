@@ -3,6 +3,10 @@
 @section('title', isset($class) ? 'Ubah Kelas' : 'Tambah Kelas')
 
 @section('content')
+<div class="page-header">
+    <h1>{{ isset($class) ? 'Ubah Kelas' : 'Tambah Kelas' }}</h1>
+    <p>{{ isset($class) ? 'Perbarui data kelas.' : 'Daftarkan kelas baru untuk tahun ajaran berjalan.' }}</p>
+</div>
 <div class="card">
     <div class="card-body">
         <form method="POST" action="{{ isset($class) ? route('admin.classes.update', $class) : route('admin.classes.store') }}">
