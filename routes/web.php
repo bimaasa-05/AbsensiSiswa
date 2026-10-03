@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SchoolClassController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::resource('/admin/classes', SchoolClassController::class)
+        ->names('admin.classes')
+        ->except(['show']);
 
     // Halaman orang tua akan dibangun pada Phase 5 (Parent Monitoring).
     Route::get('/orang-tua/dashboard', function () {
