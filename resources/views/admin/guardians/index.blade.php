@@ -3,9 +3,12 @@
 @section('title', 'Data Orang Tua')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <p class="text-muted mb-0">Kelola data orang tua/wali siswa.</p>
-    <a href="{{ route('admin.guardians.create') }}" class="btn btn-primary btn-sm">
+<div class="page-header d-flex justify-content-between align-items-start">
+    <div>
+        <h1>Data Orang Tua</h1>
+        <p>Kelola data orang tua/wali siswa.</p>
+    </div>
+    <a href="{{ route('admin.guardians.create') }}" class="btn btn-primary btn-sm flex-shrink-0">
         <i class="bi bi-plus-lg me-1"></i>Tambah Orang Tua
     </a>
 </div>
