@@ -72,8 +72,8 @@
                     </div>
 
                     <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Simpan Koreksi</button>
-                        <a href="{{ route('admin.attendances.today') }}" class="btn btn-outline-secondary">Batal</a>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Simpan Koreksi</button>
+                        <a href="{{ route('admin.attendances.today') }}" class="btn btn-outline-secondary"><i class="bi bi-x-lg me-1"></i>Batal</a>
                     </div>
                 </form>
             </div>
