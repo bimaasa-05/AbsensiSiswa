@@ -3,7 +3,10 @@
 @section('title', 'Simulasi Fingerprint')
 
 @section('content')
-<p class="text-muted">Simulasi perangkat fingerprint untuk pengembangan. Pada perangkat nyata, alat akan mengirim identifier secara otomatis ke sistem.</p>
+<div class="page-header">
+    <h1>Simulasi Fingerprint</h1>
+    <p>Simulasi perangkat fingerprint untuk pengembangan. Pada perangkat nyata, alat akan mengirim identifier secara otomatis ke sistem.</p>
+</div>
 
 <div class="card">
     <div class="card-body">
