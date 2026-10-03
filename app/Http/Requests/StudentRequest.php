@@ -34,6 +34,7 @@ class StudentRequest extends FormRequest
             'parent_id' => ['nullable', 'exists:parents,id'],
             'gender' => ['nullable', Rule::in([Student::GENDER_MALE, Student::GENDER_FEMALE])],
             'status' => ['required', 'in:active,inactive'],
+            'fingerprint_identifier' => ['nullable', 'string', 'max:100', Rule::unique('students', 'fingerprint_identifier')->ignore($studentId)],
         ];
     }
 
@@ -49,6 +50,7 @@ class StudentRequest extends FormRequest
             'parent_id.exists' => 'Orang tua/wali tidak valid.',
             'gender.in' => 'Jenis kelamin tidak valid.',
             'status.in' => 'Status tidak valid.',
+            'fingerprint_identifier.unique' => 'ID fingerprint sudah digunakan siswa lain.',
         ];
     }
 }
