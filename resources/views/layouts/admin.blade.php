@@ -99,6 +99,9 @@
                 <a href="{{ route('admin.attendances.today') }}" class="nav-link {{ request()->routeIs('admin.attendances.today') ? 'active' : '' }}"><i class="bi bi-clipboard-check me-2"></i>Absensi</a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('admin.attendances.missing') }}" class="nav-link {{ request()->routeIs('admin.attendances.missing') ? 'active' : '' }}"><i class="bi bi-person-exclamation me-2"></i>Belum Absen</a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('admin.attendances.history') }}" class="nav-link {{ request()->routeIs('admin.attendances.history') ? 'active' : '' }}"><i class="bi bi-clock-history me-2"></i>Riwayat</a>
             </li>
             <li class="nav-item">
