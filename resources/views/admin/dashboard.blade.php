@@ -9,7 +9,7 @@
     <div class="col-md-3">
         <div class="card">
             <div class="card-body">
-                <div class="text-muted small">Total Siswa</div>
+                <div class="text-muted small"><i class="bi bi-people me-1"></i>Total Siswa</div>
                 <div class="h4 mb-0">{{ $totalStudents }}</div>
             </div>
         </div>
@@ -17,7 +17,7 @@
     <div class="col-md-3">
         <div class="card">
             <div class="card-body">
-                <div class="text-muted small">Sudah Hadir</div>
+                <div class="text-muted small"><i class="bi bi-check-circle me-1"></i>Sudah Hadir</div>
                 <div class="h4 mb-0">{{ $present }}</div>
             </div>
         </div>
@@ -25,7 +25,7 @@
     <div class="col-md-3">
         <div class="card">
             <div class="card-body">
-                <div class="text-muted small">Terlambat</div>
+                <div class="text-muted small"><i class="bi bi-alarm me-1"></i>Terlambat</div>
                 <div class="h4 mb-0">{{ $late }}</div>
             </div>
         </div>
@@ -34,7 +34,7 @@
         <a href="{{ route('admin.attendances.missing') }}" class="text-decoration-none">
             <div class="card">
                 <div class="card-body">
-                    <div class="text-muted small">Belum Absen</div>
+                    <div class="text-muted small"><i class="bi bi-person-exclamation me-1"></i>Belum Absen</div>
                     <div class="h4 mb-0 text-dark">{{ $notYet }}</div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                                 <td>{{ $attendance->student->schoolClass->name ?? '-' }}</td>
                                 <td>
                                     <span class="badge {{ $attendance->status === 'present' ? 'text-bg-success' : ($attendance->status === 'late' ? 'text-bg-warning' : 'text-bg-secondary') }}">
-                                        {{ \App\Models\Attendance::statusLabel($attendance->status) }}
+                                        <i class="bi {{ $attendance->status === 'present' ? 'bi-check-circle-fill' : ($attendance->status === 'late' ? 'bi-alarm-fill' : 'bi-dash-circle-fill') }} me-1"></i>{{ \App\Models\Attendance::statusLabel($attendance->status) }}
                                     </span>
                                 </td>
                             </tr>
