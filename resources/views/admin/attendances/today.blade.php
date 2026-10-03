@@ -3,7 +3,10 @@
 @section('title', 'Absensi Hari Ini')
 
 @section('content')
-<p class="text-muted">{{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</p>
+<div class="page-header">
+    <h1>Absensi Hari Ini</h1>
+    <p>{{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY') }}</p>
+</div>
 
 <div class="card mb-3">
     <div class="card-body">
