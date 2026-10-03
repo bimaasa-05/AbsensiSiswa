@@ -3,6 +3,10 @@
 @section('title', 'Rekap Absensi')
 
 @section('content')
+<div class="page-header">
+    <h1>Rekap Absensi</h1>
+    <p>Rekapitulasi kehadiran per siswa pada periode terpilih.</p>
+</div>
 <div class="card mb-3">
     <div class="card-body">
         <form method="GET" action="{{ route('admin.attendances.recap') }}" class="row g-2">
