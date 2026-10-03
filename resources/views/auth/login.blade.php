@@ -3,7 +3,7 @@
 @section('title', 'Masuk')
 
 @section('content')
-<div class="container-fluid login-wrap">
+<div class="container-fluid login-wrap p-0">
     <div class="row g-0" style="min-height: 100vh;">
         <div class="col-md-6 d-none d-md-flex flex-column justify-content-center login-panel p-5">
             <div style="max-width: 420px; margin: 0 auto;">
@@ -36,22 +36,31 @@
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" id="email" value="{{ old('email') }}"
-                                    class="form-control @error('email') is-invalid @enderror"
-                                    placeholder="nama@sekolah.sch.id" required autofocus>
-                                @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" name="email" id="email" value="{{ old('email') }}"
+                                        class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="nama@sekolah.sch.id" required autofocus>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="mb-3">
                                 <label for="password" class="form-label">Kata Sandi</label>
-                                <input type="password" name="password" id="password"
-                                    class="form-control @error('password') is-invalid @enderror"
-                                    placeholder="Masukkan kata sandi" required>
-                                @error('password')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                    <input type="password" name="password" id="password"
+                                        class="form-control @error('password') is-invalid @enderror"
+                                        placeholder="Masukkan kata sandi" required>
+                                    <button type="button" class="btn btn-outline-secondary" id="toggle-password" aria-label="Tampilkan kata sandi">
+                                        <i class="bi bi-eye" id="toggle-password-icon"></i>
+                                    </button>
+                                    @error('password')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
                             <div class="form-check mb-3">
@@ -67,4 +76,20 @@
         </div>
     </div>
 </div>
+
+<script>
+(function () {
+    var toggle = document.getElementById('toggle-password');
+    var input = document.getElementById('password');
+    var icon = document.getElementById('toggle-password-icon');
+    if (!toggle || !input || !icon) return;
+    toggle.addEventListener('click', function () {
+        var show = input.type === 'password';
+        input.type = show ? 'text' : 'password';
+        icon.classList.toggle('bi-eye', !show);
+        icon.classList.toggle('bi-eye-slash', show);
+        toggle.setAttribute('aria-label', show ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi');
+    });
+})();
+</script>
 @endsection
