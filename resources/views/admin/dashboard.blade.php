@@ -3,39 +3,54 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<p class="text-muted mb-4">{{ $today }}</p>
+<div class="page-header">
+    <h1>Dashboard</h1>
+    <p>{{ $today }}</p>
+</div>
 
 <div class="row g-3 mb-4">
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-muted small"><i class="bi bi-people me-1"></i>Total Siswa</div>
-                <div class="h4 mb-0">{{ $totalStudents }}</div>
+    <div class="col-md-3 col-6">
+        <div class="card stat-card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <span class="stat-icon stat-icon--blue"><i class="bi bi-people"></i></span>
+                <div>
+                    <div class="stat-value">{{ $totalStudents }}</div>
+                    <div class="stat-label">Total Siswa</div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-muted small"><i class="bi bi-check-circle me-1"></i>Sudah Hadir</div>
-                <div class="h4 mb-0">{{ $present }}</div>
+    <div class="col-md-3 col-6">
+        <div class="card stat-card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <span class="stat-icon stat-icon--green"><i class="bi bi-check-circle"></i></span>
+                <div>
+                    <div class="stat-value">{{ $present }}</div>
+                    <div class="stat-label">Sudah Hadir</div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-muted small"><i class="bi bi-alarm me-1"></i>Terlambat</div>
-                <div class="h4 mb-0">{{ $late }}</div>
+    <div class="col-md-3 col-6">
+        <div class="card stat-card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <span class="stat-icon stat-icon--amber"><i class="bi bi-alarm"></i></span>
+                <div>
+                    <div class="stat-value">{{ $late }}</div>
+                    <div class="stat-label">Terlambat</div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 col-6">
         <a href="{{ route('admin.attendances.missing') }}" class="text-decoration-none">
-            <div class="card">
-                <div class="card-body">
-                    <div class="text-muted small"><i class="bi bi-person-exclamation me-1"></i>Belum Absen</div>
-                    <div class="h4 mb-0 text-dark">{{ $notYet }}</div>
+            <div class="card stat-card h-100">
+                <div class="card-body d-flex align-items-center gap-3">
+                    <span class="stat-icon stat-icon--red"><i class="bi bi-person-exclamation"></i></span>
+                    <div>
+                        <div class="stat-value text-dark">{{ $notYet }}</div>
+                        <div class="stat-label">Belum Absen</div>
+                    </div>
                 </div>
             </div>
         </a>
