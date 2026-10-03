@@ -38,6 +38,29 @@ class AttendanceController extends Controller
         ]);
     }
 
+    public function missing(Request $request): View
+    {
+        $today = today()->toDateString();
+
+        $students = Student::with(['schoolClass', 'guardian'])
+            ->where('status', Student::STATUS_ACTIVE)
+            ->whereNotExists(function ($query) use ($today) {
+                $query->selectRaw('1')
+                    ->from('attendances')
+                    ->whereColumn('attendances.student_id', 'students.id')
+                    ->where('attendances.attendance_date', $today);
+            })
+            ->when($request->filled('class_id'), fn ($query) => $query->where('class_id', $request->class_id))
+            ->orderBy('name')
+            ->paginate(20)
+            ->withQueryString();
+
+        return view('admin.attendances.missing', [
+            'students' => $students,
+            'classes' => SchoolClass::orderBy('name')->get(),
+        ]);
+    }
+
     public function history(Request $request): View
     {
         $validated = $request->validate([
