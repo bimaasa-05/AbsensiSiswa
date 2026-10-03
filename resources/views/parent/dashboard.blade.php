@@ -3,7 +3,10 @@
 @section('title', 'Anak Saya')
 
 @section('content')
-<h1 class="h5 fw-bold mb-3">Anak Saya</h1>
+<div class="page-header">
+    <h1>Anak Saya</h1>
+    <p>Pantau kehadiran harian anak.</p>
+</div>
 
 @if ($children->isEmpty())
     <div class="card">
