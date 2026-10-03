@@ -3,6 +3,10 @@
 @section('title', isset($guardian) ? 'Ubah Orang Tua' : 'Tambah Orang Tua')
 
 @section('content')
+<div class="page-header">
+    <h1>{{ isset($guardian) ? 'Ubah Orang Tua' : 'Tambah Orang Tua' }}</h1>
+    <p>{{ isset($guardian) ? 'Perbarui data orang tua/wali.' : 'Daftarkan orang tua/wali beserta nomor WhatsApp notifikasi.' }}</p>
+</div>
 <div class="card">
     <div class="card-body">
         <form method="POST" action="{{ isset($guardian) ? route('admin.guardians.update', $guardian) : route('admin.guardians.store') }}">
