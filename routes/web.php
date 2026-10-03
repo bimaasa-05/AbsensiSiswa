@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
+use App\Http\Controllers\Admin\AttendanceCorrectionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GuardianController;
 use App\Http\Controllers\Admin\SchoolClassController;
@@ -44,6 +46,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/admin/students/{student}/qr/regenerate', [StudentController::class, 'regenerateQr'])
         ->name('admin.students.qr.regenerate');
+
+    Route::get('/admin/attendances/today', [AdminAttendanceController::class, 'today'])->name('admin.attendances.today');
+    Route::get('/admin/attendances/history', [AdminAttendanceController::class, 'history'])->name('admin.attendances.history');
+    Route::get('/admin/attendances/recap', [AdminAttendanceController::class, 'recap'])->name('admin.attendances.recap');
+
+    Route::get('/admin/attendances/{attendance}/correction', [AttendanceCorrectionController::class, 'edit'])->name('admin.corrections.edit');
+    Route::put('/admin/attendances/{attendance}/correction', [AttendanceCorrectionController::class, 'update'])->name('admin.corrections.update');
 
     // Halaman orang tua akan dibangun pada Phase 5 (Parent Monitoring).
     Route::get('/orang-tua/dashboard', function () {

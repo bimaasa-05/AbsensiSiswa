@@ -93,10 +93,13 @@
                 <a href="{{ route('attendance.scanner') }}" class="nav-link" target="_blank"><i class="bi bi-qr-code-scan me-2"></i>Scanner</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="bi bi-clipboard-check me-2"></i>Absensi</a>
+                <a href="{{ route('admin.attendances.today') }}" class="nav-link {{ request()->routeIs('admin.attendances.today') ? 'active' : '' }}"><i class="bi bi-clipboard-check me-2"></i>Absensi</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="bi bi-table me-2"></i>Rekap</a>
+                <a href="{{ route('admin.attendances.history') }}" class="nav-link {{ request()->routeIs('admin.attendances.history') ? 'active' : '' }}"><i class="bi bi-clock-history me-2"></i>Riwayat</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.attendances.recap') }}" class="nav-link {{ request()->routeIs('admin.attendances.recap') ? 'active' : '' }}"><i class="bi bi-table me-2"></i>Rekap</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link"><i class="bi bi-gear me-2"></i>Pengaturan</a>
