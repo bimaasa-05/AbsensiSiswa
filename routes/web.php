@@ -30,7 +30,7 @@ Route::post('/absensi/scan', [AttendanceController::class, 'scan'])
     ->middleware('throttle:60,1')
     ->name('attendance.scan');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::resource('/admin/classes', SchoolClassController::class)
@@ -58,6 +58,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/fingerprint/mock', [FingerprintController::class, 'mock'])->name('admin.fingerprint.mock');
     Route::post('/admin/fingerprint/mock', [FingerprintController::class, 'store'])->name('admin.fingerprint.store');
+});
 
+Route::middleware(['auth', 'role:parent'])->group(function () {
     Route::get('/orang-tua/dashboard', [ParentDashboardController::class, 'index'])->name('parent.dashboard');
 });
