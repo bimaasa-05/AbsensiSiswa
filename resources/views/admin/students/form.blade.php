@@ -81,6 +81,16 @@
                         <option value="inactive" @selected(old('status', $student->status ?? '') === 'inactive')>Nonaktif</option>
                     </select>
                 </div>
+
+                <div class="col-md-6">
+                    <label for="fingerprint_identifier" class="form-label">ID Fingerprint <span class="text-muted">(opsional)</span></label>
+                    <input type="text" name="fingerprint_identifier" id="fingerprint_identifier" value="{{ old('fingerprint_identifier', $student->fingerprint_identifier ?? '') }}"
+                        class="form-control @error('fingerprint_identifier') is-invalid @enderror"
+                        placeholder="ID dari perangkat fingerprint">
+                    @error('fingerprint_identifier')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
 
             <div class="mt-4 d-flex gap-2">
