@@ -3,10 +3,12 @@
 @section('title', 'Absensi Siswa')
 
 @section('content')
-<div class="row justify-content-center mt-4">
+<div class="container py-4">
+<div class="row justify-content-center">
     <div class="col-md-6 col-lg-5">
         <div class="text-center mb-3">
-            <h1 class="h5 fw-bold mb-1">Absensi Siswa</h1>
+            <span class="stat-icon stat-icon--blue mb-2"><i class="bi bi-qr-code-scan"></i></span>
+            <h1 class="h5 fw-bold mb-1 mt-2">Absensi Siswa</h1>
             <p class="text-muted small mb-0" id="clock">{{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm') }} WIB</p>
         </div>
 
@@ -30,6 +32,7 @@
             <a href="{{ route('login') }}" class="btn btn-sm btn-link"><i class="bi bi-box-arrow-in-right me-1"></i>Masuk sebagai Admin</a>
         </div>
     </div>
+</div>
 </div>
 
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
