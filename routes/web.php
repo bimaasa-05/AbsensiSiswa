@@ -51,6 +51,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         ->name('admin.students.qr.regenerate');
 
     Route::get('/admin/attendances/today', [AdminAttendanceController::class, 'today'])->name('admin.attendances.today');
+    Route::get('/admin/attendances/missing', [AdminAttendanceController::class, 'missing'])->name('admin.attendances.missing');
     Route::get('/admin/attendances/history', [AdminAttendanceController::class, 'history'])->name('admin.attendances.history');
     Route::get('/admin/attendances/recap', [AdminAttendanceController::class, 'recap'])->name('admin.attendances.recap');
     Route::get('/admin/attendances/recap/export', [AdminAttendanceController::class, 'exportRecap'])->name('admin.attendances.recap.export');
