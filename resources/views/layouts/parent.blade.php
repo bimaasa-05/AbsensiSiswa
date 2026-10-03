@@ -45,7 +45,7 @@
             <span class="fw-bold">Absensi Siswa</span>
             <form method="POST" action="{{ route('logout') }}" class="d-inline">
                 @csrf
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Keluar</button>
+                <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="bi bi-box-arrow-right me-1"></i>Keluar</button>
             </form>
         </div>
     </header>
