@@ -93,6 +93,9 @@
                 <a href="{{ route('attendance.scanner') }}" class="nav-link" target="_blank"><i class="bi bi-qr-code-scan me-2"></i>Scanner</a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('admin.fingerprint.mock') }}" class="nav-link {{ request()->routeIs('admin.fingerprint.*') ? 'active' : '' }}"><i class="bi bi-fingerprint me-2"></i>Fingerprint</a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ route('admin.attendances.today') }}" class="nav-link {{ request()->routeIs('admin.attendances.today') ? 'active' : '' }}"><i class="bi bi-clipboard-check me-2"></i>Absensi</a>
             </li>
             <li class="nav-item">

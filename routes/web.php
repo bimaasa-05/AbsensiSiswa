@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
 use App\Http\Controllers\Admin\AttendanceCorrectionController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FingerprintController;
 use App\Http\Controllers\Admin\GuardianController;
 use App\Http\Controllers\Admin\SchoolClassController;
 use App\Http\Controllers\Admin\StudentController;
@@ -54,6 +55,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/attendances/{attendance}/correction', [AttendanceCorrectionController::class, 'edit'])->name('admin.corrections.edit');
     Route::put('/admin/attendances/{attendance}/correction', [AttendanceCorrectionController::class, 'update'])->name('admin.corrections.update');
+
+    Route::get('/admin/fingerprint/mock', [FingerprintController::class, 'mock'])->name('admin.fingerprint.mock');
+    Route::post('/admin/fingerprint/mock', [FingerprintController::class, 'store'])->name('admin.fingerprint.store');
 
     Route::get('/orang-tua/dashboard', [ParentDashboardController::class, 'index'])->name('parent.dashboard');
 });
