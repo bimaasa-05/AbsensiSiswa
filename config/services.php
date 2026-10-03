@@ -35,4 +35,10 @@ return [
         ],
     ],
 
+    'whatsapp' => [
+        'driver' => env('WA_DRIVER', 'log'),
+        'api_url' => env('WA_API_URL'),
+        'api_key' => env('WA_API_KEY'),
+    ],
+
 ];
