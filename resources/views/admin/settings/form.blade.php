@@ -64,7 +64,7 @@
             </div>
 
             <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Simpan Pengaturan</button>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Simpan Pengaturan</button>
             </div>
         </form>
     </div>
