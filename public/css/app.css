@@ -1,0 +1,239 @@
+/* ============================================================
+   Absensi Siswa — Tema "Sekolah Modern Hangat"
+   Palet: navy pekat + aksen amber + permukaan terang
+   ============================================================ */
+
+:root {
+    --primary: #1b3a5c;
+    --primary-dark: #14293e;
+    --primary-darker: #0e1e2e;
+    --accent: #e8a020;
+    --accent-soft: #fdf3e0;
+    --success: #2e7d32;
+    --success-soft: #e6f2e7;
+    --warning: #b7791f;
+    --warning-soft: #faf3e3;
+    --danger: #c62828;
+    --danger-soft: #fbe9e9;
+    --info-soft: #e7eef5;
+    --background: #f3f5f8;
+    --surface: #ffffff;
+    --text: #263238;
+    --muted: #5b7083;
+    --border: #dde3e8;
+    --sidebar-width: 240px;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', -apple-system, 'Segoe UI', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+a {
+    color: var(--primary);
+}
+
+/* ---------- Sidebar gelap ---------- */
+
+.sidebar {
+    width: var(--sidebar-width);
+    min-height: 100vh;
+    background-color: var(--primary-dark);
+    color: #dbe4ec;
+}
+
+.sidebar-brand {
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: 1rem;
+}
+
+.sidebar-brand i {
+    color: var(--accent);
+}
+
+.sidebar-section {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8fa3b5;
+    padding: 1rem 0.9rem 0.35rem;
+}
+
+.sidebar .nav-link {
+    color: #dbe4ec;
+    border-radius: 6px;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.925rem;
+    border-left: 3px solid transparent;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+.sidebar .nav-link.active {
+    background-color: rgba(232, 160, 32, 0.15);
+    border-left-color: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.sidebar .nav-link.active i {
+    color: var(--accent);
+}
+
+/* ---------- Topbar ---------- */
+
+.topbar {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+/* ---------- Kartu ---------- */
+
+.card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(20, 41, 62, 0.08);
+}
+
+/* ---------- Kartu statistik ---------- */
+
+.stat-card .stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.stat-icon--blue { background-color: var(--info-soft); color: var(--primary); }
+.stat-icon--green { background-color: var(--success-soft); color: var(--success); }
+.stat-icon--amber { background-color: var(--warning-soft); color: var(--warning); }
+.stat-icon--red { background-color: var(--danger-soft); color: var(--danger); }
+
+.stat-card .stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.stat-card .stat-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* ---------- Header halaman ---------- */
+
+.page-header {
+    border-left: 4px solid var(--accent);
+    padding-left: 0.9rem;
+    margin-bottom: 1.25rem;
+}
+
+.page-header h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+}
+
+.page-header p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* ---------- Tabel ---------- */
+
+.table thead th {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    background-color: #eef1f5;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f6f9fc;
+}
+
+/* ---------- Tombol ---------- */
+
+.btn-primary {
+    --bs-btn-bg: var(--primary);
+    --bs-btn-border-color: var(--primary);
+    --bs-btn-hover-bg: var(--primary-dark);
+    --bs-btn-hover-border-color: var(--primary-dark);
+    --bs-btn-active-bg: var(--primary-darker);
+    --bs-btn-active-border-color: var(--primary-darker);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--primary);
+    --bs-btn-border-color: var(--primary);
+    --bs-btn-hover-bg: var(--primary);
+    --bs-btn-hover-border-color: var(--primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(27, 58, 92, 0.15);
+}
+
+/* ---------- Login split-screen ---------- */
+
+.login-wrap {
+    min-height: 100vh;
+}
+
+.login-panel {
+    background-color: var(--primary-dark);
+    color: #ffffff;
+}
+
+.login-panel .brand-icon {
+    font-size: 3rem;
+    color: var(--accent);
+}
+
+.login-panel hr {
+    border-color: rgba(255, 255, 255, 0.2);
+    opacity: 1;
+}
+
+.login-info i {
+    color: var(--accent);
+}
+
+.login-form-col {
+    background-color: var(--background);
+}
+
+/* ---------- Scanner ---------- */
+
+#reader {
+    overflow: hidden;
+}
+
+.status-banner {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--surface);
+}
+
+/* ---------- Responsif ---------- */
+
+@media (max-width: 767.98px) {
+    .stat-card .stat-value {
+        font-size: 1.5rem;
+    }
+}
