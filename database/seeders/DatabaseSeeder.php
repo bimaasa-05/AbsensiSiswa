@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             SchoolClassSeeder::class,
             GuardianSeeder::class,
             StudentSeeder::class,
+            SchoolSettingSeeder::class,
         ]);
         User::updateOrCreate(
             ['email' => 'admin@sekolah.sch.id'],
