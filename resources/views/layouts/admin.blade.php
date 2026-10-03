@@ -90,6 +90,9 @@
                 <a href="{{ route('admin.classes.index') }}" class="nav-link {{ request()->routeIs('admin.classes.*') ? 'active' : '' }}"><i class="bi bi-building me-2"></i>Data Kelas</a>
             </li>
             <li class="nav-item">
+                <a href="{{ route('attendance.scanner') }}" class="nav-link" target="_blank"><i class="bi bi-qr-code-scan me-2"></i>Scanner</a>
+            </li>
+            <li class="nav-item">
                 <a href="#" class="nav-link"><i class="bi bi-clipboard-check me-2"></i>Absensi</a>
             </li>
             <li class="nav-item">
