@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             SchoolClassSeeder::class,
+            GuardianSeeder::class,
         ]);
         User::updateOrCreate(
             ['email' => 'admin@sekolah.sch.id'],
