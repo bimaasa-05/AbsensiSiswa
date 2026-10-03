@@ -14,7 +14,7 @@ class DashboardController extends Controller
         }
 
         return view('admin.dashboard', [
-            'today' => now().locale('id')->isoFormat('dddd, D MMMM YYYY'),
+            'today' => now()->locale('id')->isoFormat('dddd, D MMMM YYYY'),
         ]);
     }
 }
