@@ -3,6 +3,10 @@
 @section('title', 'Log Notifikasi')
 
 @section('content')
+<div class="page-header">
+    <h1>Log Notifikasi</h1>
+    <p>Status pengiriman pemberitahuan WhatsApp ke orang tua/wali.</p>
+</div>
 <div class="card mb-3">
     <div class="card-body">
         <form method="GET" action="{{ route('admin.attendances.notifications') }}" class="row g-2">
