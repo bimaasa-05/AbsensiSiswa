@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\NotificationLog;
 use App\Models\SchoolClass;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Http\StreamedResponse;
 use Illuminate\View\View;
 
 class AttendanceController extends Controller
@@ -100,6 +102,62 @@ class AttendanceController extends Controller
             'start' => $start,
             'end' => $end,
         ]);
+    }
+
+    public function notifications(Request $request): View
+    {
+        $logs = NotificationLog::with(['student'])
+            ->when($request->filled('status'), fn ($query) => $query->where('status', $request->status))
+            ->when($request->filled('type'), fn ($query) => $query->where('type', $request->type))
+            ->orderByDesc('created_at')
+            ->paginate(20)
+            ->withQueryString();
+
+        return view('admin.attendances.notifications', compact('logs'));
+    }
+
+    public function exportRecap(Request $request): StreamedResponse
+    {
+        $validated = $request->validate([
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+            'class_id' => ['nullable', 'exists:classes,id'],
+        ]);
+
+        $start = $validated['start_date'] ?? today()->startOfMonth()->toDateString();
+        $end = $validated['end_date'] ?? today()->toDateString();
+
+        $students = Student::with(['schoolClass'])
+            ->when(! empty($validated['class_id'] ?? null), fn ($query) => $query->where('class_id', $validated['class_id']))
+            ->where('status', Student::STATUS_ACTIVE)
+            ->orderBy('name')
+            ->get();
+
+        $filename = "rekap-absensi-{$start}-sampai-{$end}.csv";
+
+        return response()->streamDownload(function () use ($students, $start, $end) {
+            $handle = fopen('php://output', 'w');
+            fputcsv($handle, ['Nama', 'NIS', 'Kelas', 'Hadir', 'Terlambat', 'Izin', 'Sakit', 'Alpha']);
+
+            foreach ($students as $student) {
+                $statuses = Attendance::where('student_id', $student->id)
+                    ->whereBetween('attendance_date', [$start, $end])
+                    ->pluck('status');
+
+                fputcsv($handle, [
+                    $student->name,
+                    $student->nis,
+                    $student->schoolClass->name ?? '-',
+                    $statuses->where(fn ($s) => $s === Attendance::STATUS_PRESENT)->count(),
+                    $statuses->where(fn ($s) => $s === Attendance::STATUS_LATE)->count(),
+                    $statuses->where(fn ($s) => $s === Attendance::STATUS_PERMISSION)->count(),
+                    $statuses->where(fn ($s) => $s === Attendance::STATUS_SICK)->count(),
+                    $statuses->where(fn ($s) => $s === Attendance::STATUS_ABSENT)->count(),
+                ]);
+            }
+
+            fclose($handle);
+        }, $filename, ['Content-Type' => 'text/csv']);
     }
 
     protected function statusOptions(): array
