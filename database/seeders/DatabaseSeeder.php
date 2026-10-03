@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Guardian;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'password',
                 'role' => User::ROLE_PARENT,
                 'status' => User::STATUS_ACTIVE,
+                'guardian_id' => Guardian::first()?->id,
             ]
         );
     }
