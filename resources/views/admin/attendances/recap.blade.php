@@ -21,8 +21,8 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Terapkan</button>
-                <a href="{{ route('admin.attendances.recap.export', request()->only(['start_date', 'end_date', 'class_id'])) }}" class="btn btn-sm btn-outline-secondary">Export CSV</a>
+                <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="bi bi-funnel me-1"></i>Terapkan</button>
+                <a href="{{ route('admin.attendances.recap.export', request()->only(['start_date', 'end_date', 'class_id'])) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-download me-1"></i>Export CSV</a>
             </div>
         </form>
     </div>
