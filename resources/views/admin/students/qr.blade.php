@@ -3,6 +3,10 @@
 @section('title', 'QR Code Siswa')
 
 @section('content')
+<div class="page-header">
+    <h1>QR Code Siswa</h1>
+    <p>Cetak atau buat ulang QR Code absensi.</p>
+</div>
 <div class="row g-3">
     <div class="col-md-5">
         <div class="card">
