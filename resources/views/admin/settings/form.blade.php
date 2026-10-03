@@ -3,6 +3,10 @@
 @section('title', 'Pengaturan')
 
 @section('content')
+<div class="page-header">
+    <h1>Pengaturan</h1>
+    <p>Identitas sekolah dan aturan jam kehadiran.</p>
+</div>
 <div class="card">
     <div class="card-body">
         <form method="POST" action="{{ route('admin.settings.update') }}">
