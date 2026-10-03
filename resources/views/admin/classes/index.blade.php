@@ -37,18 +37,18 @@
                             <td>{{ $class->students_count }}</td>
                             <td>
                                 @if ($class->isActive())
-                                    <span class="badge text-bg-success">Aktif</span>
+                                    <span class="badge text-bg-success"><i class="bi bi-check-lg me-1"></i>Aktif</span>
                                 @else
-                                    <span class="badge text-bg-secondary">Nonaktif</span>
+                                    <span class="badge text-bg-secondary"><i class="bi bi-dash-lg me-1"></i>Nonaktif</span>
                                 @endif
                             </td>
                             <td class="text-end pe-3">
-                                <a href="{{ route('admin.classes.edit', $class) }}" class="btn btn-sm btn-outline-secondary">Ubah</a>
+                                <a href="{{ route('admin.classes.edit', $class) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil me-1"></i>Ubah</a>
                                 <form method="POST" action="{{ route('admin.classes.destroy', $class) }}" class="d-inline"
                                     onsubmit="return confirm('Hapus kelas {{ $class->name }}?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash me-1"></i>Hapus</button>
                                 </form>
                             </td>
                         </tr>
