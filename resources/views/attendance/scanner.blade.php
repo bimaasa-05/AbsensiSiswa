@@ -20,14 +20,14 @@
                 </div>
 
                 <div id="reader" class="border rounded"></div>
-                <p class="text-muted small text-center mt-2 mb-0">Arahkan QR Code siswa ke kamera</p>
+                <p class="text-muted small text-center mt-2 mb-0"><i class="bi bi-camera me-1"></i>Arahkan QR Code siswa ke kamera</p>
             </div>
         </div>
 
         <div id="result" class="alert d-none" role="alert"></div>
 
         <div class="text-center">
-            <a href="{{ route('login') }}" class="btn btn-sm btn-link">Masuk sebagai Admin</a>
+            <a href="{{ route('login') }}" class="btn btn-sm btn-link"><i class="bi bi-box-arrow-in-right me-1"></i>Masuk sebagai Admin</a>
         </div>
     </div>
 </div>
@@ -43,11 +43,11 @@
         resultBox.classList.remove('d-none', 'alert-success', 'alert-danger');
         resultBox.classList.add(success ? 'alert-success' : 'alert-danger');
         if (success && data) {
-            resultBox.innerHTML = '<strong>Absensi Berhasil</strong><br>' +
+            resultBox.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i><strong>Absensi Berhasil</strong><br>' +
                 data.name + ' &mdash; ' + data.class + '<br>' +
                 data.time + ' WIB &mdash; ' + data.status + ' &mdash; ' + data.method;
         } else {
-            resultBox.textContent = message;
+            resultBox.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-1"></i>' + message;
         }
     }
 
