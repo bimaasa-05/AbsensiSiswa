@@ -189,6 +189,23 @@ a {
     box-shadow: 0 0 0 0.2rem rgba(27, 58, 92, 0.15);
 }
 
+.input-group-text {
+    background-color: #eef1f5;
+    border-color: var(--border);
+    color: var(--muted);
+}
+
+.input-group .btn-outline-secondary {
+    border-color: var(--border);
+    color: var(--muted);
+}
+
+.input-group .btn-outline-secondary:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
 /* ---------- Login split-screen ---------- */
 
 .login-wrap {
