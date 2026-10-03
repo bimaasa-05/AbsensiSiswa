@@ -12,11 +12,11 @@
                     {!! QrCode::size(220)->generate($student->qr_token) !!}
                 </div>
                 <div class="mt-3 d-flex gap-2 justify-content-center">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.print()">Cetak</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.print()"><i class="bi bi-printer me-1"></i>Cetak</button>
                     <form method="POST" action="{{ route('admin.students.qr.regenerate', $student) }}" class="d-inline"
                         onsubmit="return confirm('Buat ulang QR Code? QR lama tidak akan berlaku lagi.')">
                         @csrf
-                        <button type="submit" class="btn btn-sm btn-outline-secondary">Buat Ulang</button>
+                        <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-clockwise me-1"></i>Buat Ulang</button>
                     </form>
                 </div>
             </div>
@@ -41,8 +41,8 @@
                     <dd class="col-sm-8">{{ $student->isActive() ? 'Aktif' : 'Nonaktif' }}</dd>
                 </dl>
                 <div class="mt-3">
-                    <a href="{{ route('admin.students.edit', $student) }}" class="btn btn-sm btn-outline-secondary">Ubah Data</a>
-                    <a href="{{ route('admin.students.index') }}" class="btn btn-sm btn-link">Kembali</a>
+                    <a href="{{ route('admin.students.edit', $student) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil me-1"></i>Ubah Data</a>
+                    <a href="{{ route('admin.students.index') }}" class="btn btn-sm btn-link"><i class="bi bi-arrow-left me-1"></i>Kembali</a>
                 </div>
             </div>
         </div>
