@@ -31,12 +31,14 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="text-muted small">Belum Absen</div>
-                <div class="h4 mb-0">{{ $notYet }}</div>
+        <a href="{{ route('admin.attendances.missing') }}" class="text-decoration-none">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-muted small">Belum Absen</div>
+                    <div class="h4 mb-0 text-dark">{{ $notYet }}</div>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 
