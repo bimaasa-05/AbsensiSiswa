@@ -8,8 +8,8 @@ use App\Models\NotificationLog;
 use App\Models\SchoolClass;
 use App\Models\Student;
 use Illuminate\Http\Request;
-use Illuminate\Http\StreamedResponse;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AttendanceController extends Controller
 {
