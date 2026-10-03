@@ -3,9 +3,12 @@
 @section('title', 'Data Siswa')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <p class="text-muted mb-0">Kelola data siswa sekolah.</p>
-    <a href="{{ route('admin.students.create') }}" class="btn btn-primary btn-sm">
+<div class="page-header d-flex justify-content-between align-items-start">
+    <div>
+        <h1>Data Siswa</h1>
+        <p>Kelola data siswa sekolah.</p>
+    </div>
+    <a href="{{ route('admin.students.create') }}" class="btn btn-primary btn-sm flex-shrink-0">
         <i class="bi bi-plus-lg me-1"></i>Tambah Siswa
     </a>
 </div>
