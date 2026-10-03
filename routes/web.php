@@ -53,6 +53,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/attendances/today', [AdminAttendanceController::class, 'today'])->name('admin.attendances.today');
     Route::get('/admin/attendances/history', [AdminAttendanceController::class, 'history'])->name('admin.attendances.history');
     Route::get('/admin/attendances/recap', [AdminAttendanceController::class, 'recap'])->name('admin.attendances.recap');
+    Route::get('/admin/attendances/recap/export', [AdminAttendanceController::class, 'exportRecap'])->name('admin.attendances.recap.export');
+    Route::get('/admin/attendances/notifications', [AdminAttendanceController::class, 'notifications'])->name('admin.attendances.notifications');
 
     Route::get('/admin/attendances/{attendance}/correction', [AttendanceCorrectionController::class, 'edit'])->name('admin.corrections.edit');
     Route::put('/admin/attendances/{attendance}/correction', [AttendanceCorrectionController::class, 'update'])->name('admin.corrections.update');

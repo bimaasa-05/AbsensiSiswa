@@ -22,6 +22,7 @@
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-sm btn-outline-secondary">Terapkan</button>
+                <a href="{{ route('admin.attendances.recap.export', request()->only(['start_date', 'end_date', 'class_id'])) }}" class="btn btn-sm btn-outline-secondary">Export CSV</a>
             </div>
         </form>
     </div>
