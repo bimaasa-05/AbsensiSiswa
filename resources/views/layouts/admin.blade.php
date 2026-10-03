@@ -105,7 +105,7 @@
                 <a href="{{ route('admin.attendances.recap') }}" class="nav-link {{ request()->routeIs('admin.attendances.recap') ? 'active' : '' }}"><i class="bi bi-table me-2"></i>Rekap</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link"><i class="bi bi-gear me-2"></i>Pengaturan</a>
+                <a href="{{ route('admin.settings.edit') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}"><i class="bi bi-gear me-2"></i>Pengaturan</a>
             </li>
         </ul>
     </aside>

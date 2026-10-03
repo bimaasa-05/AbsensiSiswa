@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FingerprintController;
 use App\Http\Controllers\Admin\GuardianController;
 use App\Http\Controllers\Admin\SchoolClassController;
+use App\Http\Controllers\Admin\SchoolSettingController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
@@ -58,6 +59,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/admin/fingerprint/mock', [FingerprintController::class, 'mock'])->name('admin.fingerprint.mock');
     Route::post('/admin/fingerprint/mock', [FingerprintController::class, 'store'])->name('admin.fingerprint.store');
+
+    Route::get('/admin/settings', [SchoolSettingController::class, 'edit'])->name('admin.settings.edit');
+    Route::put('/admin/settings', [SchoolSettingController::class, 'update'])->name('admin.settings.update');
 });
 
 Route::middleware(['auth', 'role:parent'])->group(function () {
