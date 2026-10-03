@@ -3,6 +3,10 @@
 @section('title', 'Koreksi Absensi')
 
 @section('content')
+<div class="page-header">
+    <h1>Koreksi Absensi</h1>
+    <p>Ubah status kehadiran beserta alasan yang tercatat.</p>
+</div>
 <div class="row g-3">
     <div class="col-md-5">
         <div class="card">
