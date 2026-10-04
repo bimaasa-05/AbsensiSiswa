@@ -63,7 +63,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-muted py-4">Belum ada log notifikasi.</td>
+                            <td colspan="6">
+                                <div class="empty-state">
+                                    <i class="bi bi-bell-slash"></i>
+                                    <p>Belum ada log notifikasi.</p>
+                                </div>
+                            </td>
                         </tr>
                     @endforelse
                 </tbody>
