@@ -80,6 +80,16 @@
             </div>
         </header>
 
+        <nav class="mobile-nav d-md-none sticky-top">
+            <div class="d-flex px-2">
+                <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
+                <a href="{{ route('admin.attendances.today') }}" class="nav-link {{ request()->routeIs('admin.attendances.today') ? 'active' : '' }}">Absensi</a>
+                <a href="{{ route('admin.attendances.missing') }}" class="nav-link {{ request()->routeIs('admin.attendances.missing') ? 'active' : '' }}">Belum Absen</a>
+                <a href="{{ route('admin.attendances.history') }}" class="nav-link {{ request()->routeIs('admin.attendances.history') ? 'active' : '' }}">Riwayat</a>
+                <a href="{{ route('admin.students.index') }}" class="nav-link {{ request()->routeIs('admin.students.*') ? 'active' : '' }}">Siswa</a>
+            </div>
+        </nav>
+
         <main class="p-4">
             @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
