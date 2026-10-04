@@ -60,7 +60,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center text-muted py-4">Belum ada data siswa.</td>
+                            <td colspan="7">
+                                <div class="empty-state">
+                                    <i class="bi bi-table"></i>
+                                    <p>Belum ada data siswa.</p>
+                                </div>
+                            </td>
                         </tr>
                     @endforelse
                 </tbody>
