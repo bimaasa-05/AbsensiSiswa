@@ -11,7 +11,10 @@
 <div class="card">
     <div class="card-body">
         @if ($students->isEmpty())
-            <p class="text-muted mb-0">Belum ada siswa dengan ID fingerprint. Daftarkan ID fingerprint pada Data Siswa terlebih dahulu.</p>
+            <div class="empty-state">
+                <i class="bi bi-fingerprint"></i>
+                <p>Belum ada siswa dengan ID fingerprint. Daftarkan ID fingerprint pada Data Siswa terlebih dahulu.</p>
+            </div>
         @else
             <form method="POST" action="{{ route('admin.fingerprint.store') }}" class="row g-2">
                 @csrf
