@@ -11,7 +11,10 @@
 @if ($children->isEmpty())
     <div class="card">
         <div class="card-body">
-            <p class="text-muted mb-0">Belum ada data anak yang terhubung dengan akun ini. Silakan hubungi admin sekolah.</p>
+            <div class="empty-state">
+                <i class="bi bi-person-exclamation"></i>
+                <p>Belum ada data anak yang terhubung dengan akun ini. Silakan hubungi admin sekolah.</p>
+            </div>
         </div>
     </div>
 @else
@@ -61,7 +64,10 @@
         <div class="card-body">
             <h2 class="h6 fw-semibold mb-3">Riwayat Kehadiran</h2>
             @if ($history->isEmpty())
-                <p class="text-muted mb-0">Belum ada riwayat kehadiran.</p>
+                <div class="empty-state">
+                    <i class="bi bi-calendar-x"></i>
+                    <p>Belum ada riwayat kehadiran.</p>
+                </div>
             @else
                 <div class="table-responsive">
                     <table class="table table-sm mb-0">
