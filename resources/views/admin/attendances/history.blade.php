@@ -83,7 +83,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center text-muted py-4">Belum ada data absensi pada filter ini.</td>
+                            <td colspan="8">
+                                <div class="empty-state">
+                                    <i class="bi bi-search"></i>
+                                    <p>Belum ada data absensi pada filter ini.</p>
+                                </div>
+                            </td>
                         </tr>
                     @endforelse
                 </tbody>
