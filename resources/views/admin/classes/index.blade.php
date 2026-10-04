@@ -57,7 +57,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="8" class="text-center text-muted py-4">Belum ada data kelas.</td>
+                            <td colspan="8">
+                                <div class="empty-state">
+                                    <i class="bi bi-building"></i>
+                                    <p>Belum ada data kelas.</p>
+                                </div>
+                            </td>
                         </tr>
                     @endforelse
                 </tbody>
