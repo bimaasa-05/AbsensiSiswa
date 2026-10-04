@@ -247,10 +247,59 @@ a {
     background-color: var(--surface);
 }
 
+/* ---------- Empty state ---------- */
+
+.empty-state {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    color: var(--muted);
+}
+
+.empty-state > i {
+    font-size: 2rem;
+    color: #b0bec5;
+}
+
+.empty-state p {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+
+/* ---------- Navigasi mobile ---------- */
+
+.mobile-nav {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.mobile-nav .nav-link {
+    color: var(--text);
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+}
+
+.mobile-nav .nav-link.active {
+    color: var(--primary);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+}
+
 /* ---------- Responsif ---------- */
 
 @media (max-width: 767.98px) {
     .stat-card .stat-value {
         font-size: 1.5rem;
+    }
+
+    main.p-4 {
+        padding: 1rem !important;
+    }
+
+    .page-header h1 {
+        font-size: 1.1rem;
     }
 }
