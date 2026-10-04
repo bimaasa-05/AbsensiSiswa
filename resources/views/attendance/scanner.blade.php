@@ -28,6 +28,10 @@
 
         <div id="result" class="alert d-none" role="alert"></div>
 
+        <div id="loading" class="alert alert-info d-none text-center" role="status">
+            <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>Memproses absensi...
+        </div>
+
         <div class="text-center">
             <a href="{{ route('login') }}" class="btn btn-sm btn-link"><i class="bi bi-box-arrow-in-right me-1"></i>Masuk sebagai Admin</a>
         </div>
@@ -39,6 +43,7 @@
 <script>
 (function () {
     const resultBox = document.getElementById('result');
+    const loadingBox = document.getElementById('loading');
     let processing = false;
     let cooldown = false;
 
@@ -57,6 +62,8 @@
     function onScan(qrToken) {
         if (processing || cooldown) return;
         processing = true;
+        resultBox.classList.add('d-none');
+        loadingBox.classList.remove('d-none');
 
         const type = document.querySelector('input[name="scan-type"]:checked').value;
 
@@ -78,7 +85,7 @@
                 }
             })
             .catch(() => showResult(false, 'Absensi belum dapat diproses. Silakan coba kembali.'))
-            .finally(() => { processing = false; });
+            .finally(() => { processing = false; loadingBox.classList.add('d-none'); });
     }
 
     const scanner = new Html5Qrcode('reader');
