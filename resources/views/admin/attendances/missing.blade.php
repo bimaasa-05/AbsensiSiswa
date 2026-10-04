@@ -52,7 +52,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center text-muted py-4">Semua siswa sudah melakukan absensi hari ini.</td>
+                            <td colspan="5">
+                                <div class="empty-state">
+                                    <i class="bi bi-check-circle text-success"></i>
+                                    <p>Semua siswa sudah melakukan absensi hari ini.</p>
+                                </div>
+                            </td>
                         </tr>
                     @endforelse
                 </tbody>
