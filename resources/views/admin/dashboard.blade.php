@@ -61,7 +61,10 @@
     <div class="card-body">
         <h2 class="h6 fw-semibold mb-3">Absensi Terbaru</h2>
         @if ($recent->isEmpty())
-            <p class="text-muted mb-0">Belum ada data absensi hari ini.</p>
+            <div class="empty-state">
+                <i class="bi bi-calendar-x"></i>
+                <p>Belum ada data absensi hari ini.</p>
+            </div>
         @else
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
