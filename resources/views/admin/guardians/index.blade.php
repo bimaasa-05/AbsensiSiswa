@@ -55,7 +55,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="text-center text-muted py-4">Belum ada data orang tua/wali.</td>
+                            <td colspan="7">
+                                <div class="empty-state">
+                                    <i class="bi bi-person-vcard"></i>
+                                    <p>Belum ada data orang tua/wali.</p>
+                                </div>
+                            </td>
                         </tr>
                     @endforelse
                 </tbody>
