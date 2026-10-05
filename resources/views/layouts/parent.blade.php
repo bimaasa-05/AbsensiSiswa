@@ -40,6 +40,8 @@
     </header>
 
     <main class="container py-3" style="max-width: 720px;">
+        @include('components.toast')
+
         @yield('content')
     </main>
 
