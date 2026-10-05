@@ -3,6 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content')
+@if ($holiday)
+    <div class="alert alert-warning"><i class="bi bi-calendar-x me-1"></i>Hari ini libur: <strong>{{ $holiday->name }}</strong>. Absensi tetap dapat dicatat untuk kegiatan khusus.</div>
+@endif
 <div class="hero-band mb-4">
     <div class="row align-items-center g-3">
         <div class="col-md-7">
