@@ -6,10 +6,10 @@
 <div class="container py-4">
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-5">
-        <div class="text-center mb-3">
-            <span class="stat-icon stat-icon--blue mb-2"><i class="bi bi-qr-code-scan"></i></span>
+        <div class="hero-band text-center mb-3">
+            <i class="bi bi-qr-code-scan fs-3" style="color: var(--kunyit);"></i>
             <h1 class="h5 fw-bold mb-1 mt-2">Absensi Siswa</h1>
-            <p class="text-muted small mb-0" id="clock">{{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm') }} WIB</p>
+            <p class="small mb-0" id="clock" style="color: #bcd2c4;">{{ now()->locale('id')->isoFormat('dddd, D MMMM YYYY HH:mm') }} WIB</p>
         </div>
 
         <div class="card mb-3">
@@ -47,15 +47,21 @@
     let processing = false;
     let cooldown = false;
 
+    function esc(text) {
+        var div = document.createElement('div');
+        div.textContent = text == null ? '' : String(text);
+        return div.innerHTML;
+    }
+
     function showResult(success, message, data) {
         resultBox.classList.remove('d-none', 'alert-success', 'alert-danger');
         resultBox.classList.add(success ? 'alert-success' : 'alert-danger');
         if (success && data) {
-            resultBox.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i><strong>Absensi Berhasil</strong><br>' +
-                data.name + ' &mdash; ' + data.class + '<br>' +
-                data.time + ' WIB &mdash; ' + data.status + ' &mdash; ' + data.method;
+            resultBox.innerHTML = '<span class="stamp stamp--present mb-2">Absensi Berhasil</span><br>' +
+                '<strong>' + esc(data.name) + '</strong> &mdash; ' + esc(data.class) + '<br>' +
+                esc(data.time) + ' WIB &mdash; ' + esc(data.status) + ' &mdash; ' + esc(data.method);
         } else {
-            resultBox.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-1"></i>' + message;
+            resultBox.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-1"></i>' + esc(message);
         }
     }
 
