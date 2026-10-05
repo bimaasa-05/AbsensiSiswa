@@ -7,6 +7,7 @@ use App\Http\Requests\StudentRequest;
 use App\Models\Guardian;
 use App\Models\SchoolClass;
 use App\Models\Student;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -16,7 +17,7 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
         $students = Student::with(['schoolClass', 'guardian'])
             ->when($request->filled('class_id'), fn ($query) => $query->where('class_id', $request->class_id))
@@ -27,6 +28,22 @@ class StudentController extends Controller
             ->orderBy('name')
             ->paginate(15)
             ->withQueryString();
+
+        if ($request->ajax()) {
+            return response()->json([
+                'data' => $students->map(fn ($s) => [
+                    'id' => $s->id,
+                    'nis' => $s->nis,
+                    'name' => $s->name,
+                    'class' => $s->schoolClass->name ?? '-',
+                    'guardian' => $s->guardian->name ?? '-',
+                    'active' => $s->isActive(),
+                    'qr_url' => route('admin.students.show', $s),
+                    'edit_url' => route('admin.students.edit', $s),
+                    'delete_url' => route('admin.students.destroy', $s),
+                ])->values(),
+            ]);
+        }
 
         $classes = SchoolClass::where('status', SchoolClass::STATUS_ACTIVE)->orderBy('name')->get();
 
