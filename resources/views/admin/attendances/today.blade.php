@@ -66,9 +66,7 @@
                             <td>{{ $attendance->student->schoolClass->name ?? '-' }}</td>
                             <td>{{ $attendance->method === 'qr' ? 'QR Code' : ucfirst((string) $attendance->method) }}</td>
                             <td>
-                                <span class="badge {{ $attendance->status === 'present' ? 'text-bg-success' : ($attendance->status === 'late' ? 'text-bg-warning' : 'text-bg-secondary') }}">
-                                    <i class="bi {{ $attendance->status === 'present' ? 'bi-check-circle-fill' : ($attendance->status === 'late' ? 'bi-alarm-fill' : 'bi-dash-circle-fill') }} me-1"></i>{{ \App\Models\Attendance::statusLabel($attendance->status) }}
-                                </span>
+                                <span class="stamp stamp--{{ $attendance->status }}">{{ \App\Models\Attendance::statusLabel($attendance->status) }}</span>
                             </td>
                             <td>
                                 <span class="badge text-bg-secondary">
