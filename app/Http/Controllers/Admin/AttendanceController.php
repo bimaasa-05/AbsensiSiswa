@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Exports\RecapExport;
 use App\Models\Attendance;
 use App\Models\NotificationLog;
 use App\Models\SchoolClass;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AttendanceController extends Controller
@@ -137,6 +140,23 @@ class AttendanceController extends Controller
             ->withQueryString();
 
         return view('admin.attendances.notifications', compact('logs'));
+    }
+
+    public function exportExcel(Request $request): BinaryFileResponse
+    {
+        $validated = $request->validate([
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
+            'class_id' => ['nullable', 'exists:classes,id'],
+        ]);
+
+        $start = $validated['start_date'] ?? today()->startOfMonth()->toDateString();
+        $end = $validated['end_date'] ?? today()->toDateString();
+
+        return Excel::download(
+            new RecapExport($start, $end, $validated['class_id'] ?? null),
+            "rekap-absensi-{$start}-sampai-{$end}.xlsx"
+        );
     }
 
     public function exportRecap(Request $request): StreamedResponse
