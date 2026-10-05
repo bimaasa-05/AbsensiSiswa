@@ -33,7 +33,7 @@ Kunyit `#C77F0A` / Tinta `#1C2B26`. Font: Plus Jakarta Sans.
 
 ## P2. Paket A — rapi-rapi final
 
-- [ ] Hapus `welcome.blade.php`, `APP_NAME` benar, README (install, kredensial
+- [x] Hapus `welcome.blade.php`, `APP_NAME` benar, README (install, kredensial
       demo, queue, driver WA), final push
 
 ## P3. Paket B — fitur P2 PRD
