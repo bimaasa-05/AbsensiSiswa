@@ -23,10 +23,10 @@
     </div>
     <script>
     (function () {
-        var el = document.querySelector('.toast-container .toast');
-        if (!el || typeof bootstrap === 'undefined') return;
-        var toast = new bootstrap.Toast(el, { delay: 4000 });
-        toast.show();
+        if (typeof bootstrap === 'undefined') return;
+        document.querySelectorAll('.toast-container .toast').forEach(function (el) {
+            new bootstrap.Toast(el, { delay: 4000 }).show();
+        });
     })();
     </script>
 @endif
