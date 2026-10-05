@@ -75,6 +75,50 @@
     </div>
 </div>
 
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h6 fw-semibold mb-3"><i class="bi bi-graph-up me-1"></i>Tren 7 Hari Terakhir</h2>
+                @foreach ($trend as $day)
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span>{{ $day['label'] }}</span>
+                            <span class="text-muted">{{ $day['count'] }} siswa</span>
+                        </div>
+                        <div class="progress" style="height: 8px;" role="progressbar" aria-label="Kehadiran {{ $day['label'] }}">
+                            <div class="progress-bar" style="width: {{ $day['percent'] }}%"></div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="h6 fw-semibold mb-3"><i class="bi bi-building me-1"></i>Kehadiran Per Kelas Hari Ini</h2>
+                @forelse ($perClass as $row)
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between small mb-1">
+                            <span>{{ $row['name'] }}</span>
+                            <span class="text-muted">{{ $row['checked_in'] }}/{{ $row['total'] }}</span>
+                        </div>
+                        <div class="progress" style="height: 8px;" role="progressbar" aria-label="Kehadiran {{ $row['name'] }}">
+                            <div class="progress-bar" style="width: {{ $row['percent'] }}%"></div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="empty-state">
+                        <i class="bi bi-building"></i>
+                        <p>Belum ada data kelas aktif.</p>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-body">
         <h2 class="h6 fw-semibold mb-3">Absensi Terbaru</h2>
