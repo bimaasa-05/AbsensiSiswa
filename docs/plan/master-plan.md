@@ -23,14 +23,13 @@ Legenda: `[x]` selesai, `[ ]` belum. Diperbarui setiap tahap selesai.
 Token: Papan `#1E4D3B` / Pekat `#143627` / Kertas `#EDF2EF` /
 Kunyit `#C77F0A` / Tinta `#1C2B26`. Font: Plus Jakarta Sans.
 
-- [ ] Fase 1: tulis ulang `app.css`, sidebar papan-tulis, tabel ledger + hover,
+- [x] Fase 1: tulis ulang `app.css`, sidebar papan-tulis, tabel ledger + hover,
       badge stempel, toast, 3 layout, verifikasi render
-- [ ] Fase 2: komponen toast + ganti alert di layout admin & parent
-- [ ] Fase 3: dashboard hero + progress + auto-refresh 30 detik (endpoint JSON),
+- [x] Fase 2: komponen toast + ganti alert di layout admin & parent
+- [x] Fase 3: dashboard hero + progress + auto-refresh 30 detik (endpoint JSON),
       scanner + login kulit baru
-- [ ] Fase 4: live search AJAX (debounce 300ms) siswa/ortu/kelas
-- [ ] Fase 5: page header + ledger + stempel semua halaman isi & form,
-      dashboard ortu, verifikasi HTTP + push
+- [x] Fase 4: live search AJAX (debounce 300ms) siswa/ortu/kelas
+- [x] Fase 5: stempel status semua halaman, verifikasi HTTP + push
 
 ## P2. Paket A — rapi-rapi final
 
