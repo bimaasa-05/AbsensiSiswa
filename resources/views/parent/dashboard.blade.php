@@ -43,9 +43,8 @@
             <div class="status-banner p-3 text-center">
                 <div class="text-muted small">Status Hari Ini</div>
                 @if ($todayAttendance)
-                    <div class="h5 mb-1">
-                        <i class="bi {{ $todayAttendance->status === 'present' ? 'bi-check-circle-fill text-success' : ($todayAttendance->status === 'late' ? 'bi-alarm-fill text-warning' : 'bi-dash-circle-fill text-secondary') }}"></i>
-                        {{ \App\Models\Attendance::statusLabel($todayAttendance->status) }}
+                    <div class="mb-1">
+                        <span class="stamp stamp--{{ $todayAttendance->status }}">{{ \App\Models\Attendance::statusLabel($todayAttendance->status) }}</span>
                     </div>
                     <div class="small text-muted">
                         Masuk: {{ $todayAttendance->check_in ? substr((string) $todayAttendance->check_in, 0, 5) : '-' }}
@@ -83,7 +82,7 @@
                                 <tr>
                                     <td>{{ $row->attendance_date->locale('id')->isoFormat('D MMM YYYY') }}</td>
                                     <td>
-                                        <i class="bi {{ $row->status === 'present' ? 'bi-check-circle-fill text-success' : ($row->status === 'late' ? 'bi-alarm-fill text-warning' : 'bi-dash-circle-fill text-secondary') }} me-1"></i>{{ \App\Models\Attendance::statusLabel($row->status) }}
+                                        <span class="stamp stamp--{{ $row->status }}">{{ \App\Models\Attendance::statusLabel($row->status) }}</span>
                                     </td>
                                     <td>{{ $row->check_in ? substr((string) $row->check_in, 0, 5) : '-' }}</td>
                                 </tr>
