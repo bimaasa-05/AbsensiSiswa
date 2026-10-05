@@ -420,3 +420,22 @@ select:focus-visible {
         transition: none;
     }
 }
+
+@media print {
+    .sidebar,
+    .topbar,
+    .mobile-nav,
+    .toast-container,
+    .btn,
+    .page-header .btn {
+        display: none !important;
+    }
+
+    body {
+        background-color: #fff;
+    }
+
+    .card {
+        box-shadow: none;
+    }
+}
