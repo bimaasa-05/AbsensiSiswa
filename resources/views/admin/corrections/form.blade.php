@@ -22,7 +22,7 @@
                     <dt class="col-sm-4">Masuk</dt>
                     <dd class="col-sm-8">{{ $attendance->check_in ? substr((string) $attendance->check_in, 0, 5) : '-' }}</dd>
                     <dt class="col-sm-4">Status</dt>
-                    <dd class="col-sm-8">{{ \App\Models\Attendance::statusLabel($attendance->status) }}</dd>
+                    <dd class="col-sm-8"><span class="stamp stamp--{{ $attendance->status }}">{{ \App\Models\Attendance::statusLabel($attendance->status) }}</span></dd>
                 </dl>
             </div>
         </div>
@@ -34,8 +34,8 @@
                     <ul class="list-unstyled mb-0">
                         @foreach ($attendance->corrections as $correction)
                             <li class="mb-2 small">
-                                {{ \App\Models\Attendance::statusLabel($correction->old_status) }}
-                                &rarr; {{ \App\Models\Attendance::statusLabel($correction->new_status) }}
+                                <span class="stamp stamp--{{ $correction->old_status }}">{{ \App\Models\Attendance::statusLabel($correction->old_status) }}</span>
+                                &rarr; <span class="stamp stamp--{{ $correction->new_status }}">{{ \App\Models\Attendance::statusLabel($correction->new_status) }}</span>
                                 <span class="text-muted">oleh {{ $correction->user->name }}</span><br>
                                 <span class="text-muted">{{ $correction->reason }}</span>
                             </li>
