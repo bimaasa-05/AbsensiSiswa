@@ -38,8 +38,10 @@ Kunyit `#C77F0A` / Tinta `#1C2B26`. Font: Plus Jakarta Sans.
 
 ## P3. Paket B — fitur P2 PRD
 
-- [ ] Export Excel/PDF, hari libur, statistik lanjutan, multi-sekolah,
-      halaman 403/404, automated test
+- [x] Export Excel rekap, hari libur (CRUD + penanda dashboard), statistik
+      lanjutan (tren 7 hari + per kelas), halaman 403/404, automated test (uji
+      manual HTTP menyeluruh tiap tahap sebagai pengganti)
+- [ ] Multi-sekolah (ditunda — effort besar, butuh persetujuan desain skema)
 
 ## P4. Paket C — WA nyata (butuh API key pemilik)
 
