@@ -1,68 +1,85 @@
 /* ============================================================
-   Absensi Siswa — Tema "Sekolah Modern Hangat"
-   Palet: navy pekat + aksen amber + permukaan terang
+   Absensi Siswa — Tema "Papan Tulis Ledger" (Konsep A)
+   Palet: hijau papan tulis + kapur + kunyit + tinta
    ============================================================ */
 
 :root {
-    --primary: #1b3a5c;
-    --primary-dark: #14293e;
-    --primary-darker: #0e1e2e;
-    --accent: #e8a020;
-    --accent-soft: #fdf3e0;
-    --success: #2e7d32;
-    --success-soft: #e6f2e7;
-    --warning: #b7791f;
-    --warning-soft: #faf3e3;
-    --danger: #c62828;
-    --danger-soft: #fbe9e9;
-    --info-soft: #e7eef5;
-    --background: #f3f5f8;
-    --surface: #ffffff;
-    --text: #263238;
-    --muted: #5b7083;
-    --border: #dde3e8;
+    --papan: #1e4d3b;
+    --papan-pekat: #143627;
+    --papan-gelap: #0e2a20;
+    --kertas: #edf2ef;
+    --kapur: #ffffff;
+    --kunyit: #c77f0a;
+    --kunyit-lembut: #faf0d9;
+    --tinta: #1c2b26;
+    --abu: #5f7269;
+    --garis: #d8e2dc;
+    --hijau: #2e7d32;
+    --hijau-lembut: #e2f0e4;
+    --kuning-lembut: #faf3e3;
+    --merah: #c62828;
+    --merah-lembut: #fbe9e9;
+    --biru-lembut: #e4edf3;
     --sidebar-width: 240px;
+
+    /* Alias kompatibilitas */
+    --primary: var(--papan);
+    --primary-dark: var(--papan-pekat);
+    --primary-darker: var(--papan-gelap);
+    --accent: var(--kunyit);
+    --accent-soft: var(--kunyit-lembut);
+    --success: var(--hijau);
+    --success-soft: var(--hijau-lembut);
+    --warning: #b7791f;
+    --warning-soft: var(--kuning-lembut);
+    --danger: var(--merah);
+    --danger-soft: var(--merah-lembut);
+    --info-soft: var(--biru-lembut);
+    --background: var(--kertas);
+    --surface: var(--kapur);
+    --text: var(--tinta);
+    --muted: var(--abu);
+    --border: var(--garis);
 }
 
 body {
     font-family: 'Plus Jakarta Sans', -apple-system, 'Segoe UI', sans-serif;
-    background-color: var(--background);
-    color: var(--text);
+    background-color: var(--kertas);
+    color: var(--tinta);
 }
 
 a {
-    color: var(--primary);
+    color: var(--papan);
 }
 
-/* ---------- Sidebar gelap ---------- */
+/* ---------- Sidebar papan tulis ---------- */
 
 .sidebar {
     width: var(--sidebar-width);
     min-height: 100vh;
-    background-color: var(--primary-dark);
-    color: #dbe4ec;
+    background-color: var(--papan-pekat);
+    color: #dce8e1;
 }
 
 .sidebar-brand {
     color: #ffffff;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
     padding-bottom: 1rem;
 }
 
 .sidebar-brand i {
-    color: var(--accent);
+    color: var(--kunyit);
 }
 
 .sidebar-section {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #8fa3b5;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #9db8a9;
     padding: 1rem 0.9rem 0.35rem;
 }
 
 .sidebar .nav-link {
-    color: #dbe4ec;
+    color: #dce8e1;
     border-radius: 6px;
     padding: 0.55rem 0.9rem;
     font-size: 0.925rem;
@@ -75,29 +92,65 @@ a {
 }
 
 .sidebar .nav-link.active {
-    background-color: rgba(232, 160, 32, 0.15);
-    border-left-color: var(--accent);
+    background-color: rgba(199, 127, 10, 0.18);
+    border-left-color: var(--kunyit);
     color: #ffffff;
     font-weight: 600;
 }
 
 .sidebar .nav-link.active i {
-    color: var(--accent);
+    color: var(--kunyit);
 }
 
 /* ---------- Topbar ---------- */
 
 .topbar {
-    background-color: var(--surface);
-    border-bottom: 1px solid var(--border);
+    background-color: var(--kapur);
+    border-bottom: 1px solid var(--garis);
+}
+
+/* ---------- Pita hero dashboard ---------- */
+
+.hero-band {
+    background-color: var(--papan);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.hero-band .hero-label {
+    color: #bcd2c4;
+    font-size: 0.9rem;
+}
+
+.hero-band .hero-number {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+}
+
+.hero-band .hero-number em {
+    font-style: normal;
+    color: var(--kunyit);
+}
+
+.hero-band .progress {
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 10px;
+}
+
+.hero-band .progress-bar {
+    background-color: var(--kunyit);
 }
 
 /* ---------- Kartu ---------- */
 
 .card {
-    border: 1px solid var(--border);
+    border: 1px solid var(--garis);
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(20, 41, 62, 0.08);
+    box-shadow: none;
+    background-color: var(--kapur);
 }
 
 /* ---------- Kartu statistik ---------- */
@@ -113,26 +166,27 @@ a {
     flex-shrink: 0;
 }
 
-.stat-icon--blue { background-color: var(--info-soft); color: var(--primary); }
-.stat-icon--green { background-color: var(--success-soft); color: var(--success); }
-.stat-icon--amber { background-color: var(--warning-soft); color: var(--warning); }
-.stat-icon--red { background-color: var(--danger-soft); color: var(--danger); }
+.stat-icon--blue { background-color: var(--biru-lembut); color: var(--papan); }
+.stat-icon--green { background-color: var(--hijau-lembut); color: var(--hijau); }
+.stat-icon--amber { background-color: var(--kuning-lembut); color: var(--warning); }
+.stat-icon--red { background-color: var(--merah-lembut); color: var(--merah); }
 
 .stat-card .stat-value {
     font-size: 1.75rem;
     font-weight: 700;
     line-height: 1.2;
+    font-variant-numeric: tabular-nums;
 }
 
 .stat-card .stat-label {
     font-size: 0.85rem;
-    color: var(--muted);
+    color: var(--abu);
 }
 
 /* ---------- Header halaman ---------- */
 
 .page-header {
-    border-left: 4px solid var(--accent);
+    border-left: 4px solid var(--kunyit);
     padding-left: 0.9rem;
     margin-bottom: 1.25rem;
 }
@@ -144,66 +198,109 @@ a {
 }
 
 .page-header p {
-    color: var(--muted);
+    color: var(--abu);
     font-size: 0.9rem;
     margin-bottom: 0;
 }
 
-/* ---------- Tabel ---------- */
+/* ---------- Tabel ledger ---------- */
 
 .table thead th {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-    background-color: #eef1f5;
-    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    color: var(--abu);
+    background-color: #e2eae5;
+    border-bottom: 2px solid var(--papan);
     white-space: nowrap;
 }
 
-.table-hover tbody tr:hover {
-    background-color: #f6f9fc;
+.table-hover tbody tr {
+    transition: background-color 0.12s ease-in-out;
 }
+
+.table-hover tbody tr:hover {
+    background-color: #e4ede7;
+}
+
+.table-hover tbody tr:hover .btn-outline-secondary {
+    border-color: var(--papan);
+    color: var(--papan);
+}
+
+/* ---------- Stempel status ---------- */
+
+.stamp {
+    display: inline-block;
+    border: 2px solid currentColor;
+    border-radius: 6px;
+    padding: 0.1rem 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.5;
+    transform: rotate(-2deg);
+    white-space: nowrap;
+}
+
+.stamp--present { color: var(--hijau); background-color: var(--hijau-lembut); }
+.stamp--late { color: var(--warning); background-color: var(--kuning-lembut); }
+.stamp--permission,
+.stamp--sick { color: var(--papan); background-color: var(--biru-lembut); }
+.stamp--absent { color: var(--merah); background-color: var(--merah-lembut); }
+.stamp--neutral { color: var(--abu); background-color: #eef1f0; transform: none; }
 
 /* ---------- Tombol ---------- */
 
 .btn-primary {
-    --bs-btn-bg: var(--primary);
-    --bs-btn-border-color: var(--primary);
-    --bs-btn-hover-bg: var(--primary-dark);
-    --bs-btn-hover-border-color: var(--primary-dark);
-    --bs-btn-active-bg: var(--primary-darker);
-    --bs-btn-active-border-color: var(--primary-darker);
+    --bs-btn-bg: var(--papan);
+    --bs-btn-border-color: var(--papan);
+    --bs-btn-hover-bg: var(--papan-pekat);
+    --bs-btn-hover-border-color: var(--papan-pekat);
+    --bs-btn-active-bg: var(--papan-gelap);
+    --bs-btn-active-border-color: var(--papan-gelap);
 }
 
 .btn-outline-primary {
-    --bs-btn-color: var(--primary);
-    --bs-btn-border-color: var(--primary);
-    --bs-btn-hover-bg: var(--primary);
-    --bs-btn-hover-border-color: var(--primary);
+    --bs-btn-color: var(--papan);
+    --bs-btn-border-color: var(--papan);
+    --bs-btn-hover-bg: var(--papan);
+    --bs-btn-hover-border-color: var(--papan);
 }
 
 .form-control:focus,
 .form-select:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 0.2rem rgba(27, 58, 92, 0.15);
+    border-color: var(--papan);
+    box-shadow: 0 0 0 0.2rem rgba(30, 77, 59, 0.15);
 }
 
 .input-group-text {
-    background-color: #eef1f5;
-    border-color: var(--border);
-    color: var(--muted);
+    background-color: #e2eae5;
+    border-color: var(--garis);
+    color: var(--abu);
 }
 
 .input-group .btn-outline-secondary {
-    border-color: var(--border);
-    color: var(--muted);
+    border-color: var(--garis);
+    color: var(--abu);
 }
 
 .input-group .btn-outline-secondary:hover {
-    background-color: var(--primary);
-    border-color: var(--primary);
+    background-color: var(--papan);
+    border-color: var(--papan);
     color: #fff;
+}
+
+/* ---------- Toast ---------- */
+
+.toast-container {
+    z-index: 1080;
+}
+
+.toast-success {
+    border-left: 4px solid var(--hijau);
+}
+
+.toast-error {
+    border-left: 4px solid var(--merah);
 }
 
 /* ---------- Login split-screen ---------- */
@@ -213,13 +310,13 @@ a {
 }
 
 .login-panel {
-    background-color: var(--primary-dark);
+    background-color: var(--papan-pekat);
     color: #ffffff;
 }
 
 .login-panel .brand-icon {
     font-size: 3rem;
-    color: var(--accent);
+    color: var(--kunyit);
 }
 
 .login-panel hr {
@@ -228,11 +325,11 @@ a {
 }
 
 .login-info i {
-    color: var(--accent);
+    color: var(--kunyit);
 }
 
 .login-form-col {
-    background-color: var(--background);
+    background-color: var(--kertas);
 }
 
 /* ---------- Scanner ---------- */
@@ -242,9 +339,9 @@ a {
 }
 
 .status-banner {
-    border: 1px solid var(--border);
+    border: 1px solid var(--garis);
     border-radius: 8px;
-    background-color: var(--surface);
+    background-color: var(--kapur);
 }
 
 /* ---------- Empty state ---------- */
@@ -252,12 +349,12 @@ a {
 .empty-state {
     text-align: center;
     padding: 1.5rem 1rem;
-    color: var(--muted);
+    color: var(--abu);
 }
 
 .empty-state > i {
     font-size: 2rem;
-    color: #b0bec5;
+    color: #a9bcb1;
 }
 
 .empty-state p {
@@ -268,14 +365,14 @@ a {
 /* ---------- Navigasi mobile ---------- */
 
 .mobile-nav {
-    background-color: var(--surface);
-    border-bottom: 1px solid var(--border);
+    background-color: var(--kapur);
+    border-bottom: 1px solid var(--garis);
     overflow-x: auto;
     white-space: nowrap;
 }
 
 .mobile-nav .nav-link {
-    color: var(--text);
+    color: var(--tinta);
     font-size: 0.85rem;
     padding: 0.6rem 0.8rem;
     border-bottom: 2px solid transparent;
@@ -283,9 +380,19 @@ a {
 }
 
 .mobile-nav .nav-link.active {
-    color: var(--primary);
-    border-bottom-color: var(--accent);
+    color: var(--papan);
+    border-bottom-color: var(--kunyit);
     font-weight: 600;
+}
+
+/* ---------- Fokus keyboard ---------- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--kunyit);
+    outline-offset: 2px;
 }
 
 /* ---------- Responsif ---------- */
@@ -301,5 +408,11 @@ a {
 
     .page-header h1 {
         font-size: 1.1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .table-hover tbody tr {
+        transition: none;
     }
 }
