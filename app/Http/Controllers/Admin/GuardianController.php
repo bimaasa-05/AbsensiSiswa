@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GuardianRequest;
 use App\Models\Guardian;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class GuardianController extends Controller
@@ -13,11 +15,31 @@ class GuardianController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View|JsonResponse
     {
         $guardians = Guardian::withCount('students')
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $search = '%'.$request->search.'%';
+                $query->where(fn ($q) => $q->where('name', 'like', $search)->orWhere('phone', 'like', $search));
+            })
             ->orderBy('name')
-            ->paginate(15);
+            ->paginate(15)
+            ->withQueryString();
+
+        if ($request->ajax()) {
+            return response()->json([
+                'data' => $guardians->map(fn ($g) => [
+                    'id' => $g->id,
+                    'name' => $g->name,
+                    'phone' => $g->phone,
+                    'email' => $g->email ?? '-',
+                    'children' => $g->students_count,
+                    'active' => $g->isActive(),
+                    'edit_url' => route('admin.guardians.edit', $g),
+                    'delete_url' => route('admin.guardians.destroy', $g),
+                ])->values(),
+            ]);
+        }
 
         return view('admin.guardians.index', compact('guardians'));
     }
