@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
+use App\Models\Holiday;
 use App\Models\Student;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class DashboardController extends Controller
 
         return view('admin.dashboard', [
             'today' => now()->locale('id')->isoFormat('dddd, D MMMM YYYY'),
+            'holiday' => Holiday::todayHoliday(),
             ...$summary,
         ]);
     }
