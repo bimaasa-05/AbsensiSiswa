@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AttendanceCorrectionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FingerprintController;
 use App\Http\Controllers\Admin\GuardianController;
+use App\Http\Controllers\Admin\HolidayController;
 use App\Http\Controllers\Admin\SchoolClassController;
 use App\Http\Controllers\Admin\SchoolSettingController;
 use App\Http\Controllers\Admin\StudentController;
@@ -65,6 +66,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::get('/admin/settings', [SchoolSettingController::class, 'edit'])->name('admin.settings.edit');
     Route::put('/admin/settings', [SchoolSettingController::class, 'update'])->name('admin.settings.update');
+
+    Route::resource('/admin/holidays', HolidayController::class)
+        ->names('admin.holidays')
+        ->except(['show']);
 });
 
 Route::middleware(['auth', 'role:parent'])->group(function () {

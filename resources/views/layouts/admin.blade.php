@@ -59,6 +59,9 @@
             <li class="nav-item">
                 <a href="{{ route('admin.settings.edit') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}"><i class="bi bi-gear me-2"></i>Pengaturan</a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('admin.holidays.index') }}" class="nav-link {{ request()->routeIs('admin.holidays.*') ? 'active' : '' }}"><i class="bi bi-calendar-x me-2"></i>Hari Libur</a>
+            </li>
         </ul>
     </aside>
 
