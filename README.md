@@ -1,66 +1,84 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Absensi Siswa — Sistem Monitoring Kehadiran Siswa
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi sekolah untuk mencatat kehadiran siswa secara digital (QR Code dan
+fingerprint) dan memberi tahu orang tua/wali melalui WhatsApp.
 
-## About Laravel
+Alur utama: **siswa absen → sistem validasi → data tersimpan → orang tua
+menerima informasi → sekolah memantau dan merekap.**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Teknologi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Laravel 12 + PHP 8.2 + MySQL
+- Blade + Bootstrap 5 + Bootstrap Icons + vanilla JavaScript
+- Queue database untuk notifikasi WhatsApp
+- Tema "Papan Tulis Ledger" (`public/css/app.css`)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Instalasi lokal
 
-## Learning Laravel
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Buat database MySQL `absensi_siswa`, lalu sesuaikan `.env`:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=absensi_siswa
+DB_USERNAME=root
+DB_PASSWORD=
+APP_TIMEZONE=Asia/Jakarta
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Jalankan migration + seeder, lalu serve:
 
-## Laravel Sponsors
+```bash
+php artisan migrate --seed
+php artisan serve
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Akun demo (password: `password`)
 
-### Premium Partners
+| Peran      | Email                  |
+|------------|------------------------|
+| Admin      | `admin@sekolah.sch.id` |
+| Orang tua  | `orangtua@example.com` |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Menjalankan antrean notifikasi
 
-## Contributing
+Notifikasi WhatsApp dikirim via queue agar scanner tidak melambat:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan queue:work
+```
 
-## Code of Conduct
+Mode default (`WA_DRIVER=log`) hanya mencatat ke log untuk development.
+Untuk provider nyata (mis. Fonnte), isi di `.env` (jangan commit):
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+WA_DRIVER=http
+WA_API_URL=https://api.fonnte.com/send
+WA_API_KEY=<token-perangkat>
+```
 
-## Security Vulnerabilities
+## Hosting cPanel
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. Buat database + user di cPanel.
+2. Import `AbsensiSiswa-database.sql` via phpMyAdmin (struktur + data master).
+3. Upload project, arahkan document root ke `public/`.
+4. Sesuaikan `.env`: `DB_*`, `APP_URL`, `APP_DEBUG=false`.
+5. Pastikan `storage/` dan `bootstrap/cache/` writable + HTTPS aktif (untuk kamera scanner).
+6. Queue: cron tiap menit `php artisan queue:work --once`.
 
-## License
+## Struktur penting
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- `app/Services/AttendanceService.php` — business logic absensi
+- `app/Services/QrAttendanceService.php` — validasi scan QR
+- `app/Services/FingerprintService.php` — abstraksi perangkat fingerprint
+- `app/Services/WhatsAppNotificationService.php` — driver `log` / `http`
+- `app/Jobs/SendAttendanceWhatsAppNotification.php` — job antrean WA
+- `docs/plan/prd.md` — PRD lengkap
+- `docs/plan/master-plan.md` — status pengerjaan
