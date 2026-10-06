@@ -18,6 +18,11 @@
             <i class="bi bi-mortarboard-fill me-2"></i>Absensi Siswa
         </div>
         <ul class="nav nav-pills flex-column gap-1">
+            @if (auth()->user()?->isSuperAdmin())
+            <li class="nav-item">
+                <a href="{{ route('superadmin.schools.index') }}" class="nav-link {{ request()->routeIs('superadmin.schools.*') ? 'active' : '' }}"><i class="bi bi-buildings me-2"></i>Data Sekolah</a>
+            </li>
+            @else
             <li class="nav-item">
                 <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <i class="bi bi-speedometer2 me-2"></i>Dashboard
@@ -62,6 +67,7 @@
             <li class="nav-item">
                 <a href="{{ route('admin.holidays.index') }}" class="nav-link {{ request()->routeIs('admin.holidays.*') ? 'active' : '' }}"><i class="bi bi-calendar-x me-2"></i>Hari Libur</a>
             </li>
+            @endif
         </ul>
     </aside>
 
