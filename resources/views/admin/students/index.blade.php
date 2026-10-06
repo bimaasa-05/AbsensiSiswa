@@ -66,14 +66,14 @@
                                 @endif
                             </td>
                             <td class="text-end pe-3">
-                                <a href="{{ route('admin.students.show', $student) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-qr-code me-1"></i>QR</a>
-                                <a href="{{ route('admin.students.edit', $student) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil me-1"></i>Ubah</a>
+                                <a href="{{ route('admin.students.show', $student) }}" class="btn btn-sm btn-outline-dark"><i class="bi bi-qr-code me-1"></i>QR</a>
+                                <a href="{{ route('admin.students.edit', $student) }}" class="btn btn-sm btn-accent"><i class="bi bi-pencil me-1"></i>Ubah</a>
                                 @if ($student->isActive())
                                     <form method="POST" action="{{ route('admin.students.destroy', $student) }}" class="d-inline"
                                         onsubmit="return confirm('Nonaktifkan siswa {{ $student->name }}?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-person-x me-1"></i>Nonaktifkan</button>
+                                        <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-person-x me-1"></i>Nonaktifkan</button>
                                     </form>
                                 @endif
                             </td>
