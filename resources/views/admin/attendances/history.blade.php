@@ -41,7 +41,7 @@
                 </select>
             </div>
             <div class="col-md-1">
-                <button type="submit" class="btn btn-sm btn-outline-secondary w-100"><i class="bi bi-search me-1"></i>Cari</button>
+                <button type="submit" class="btn btn-sm btn-secondary w-100"><i class="bi bi-search me-1"></i>Cari</button>
             </div>
         </form>
     </div>
