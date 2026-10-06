@@ -42,7 +42,7 @@ class AttendanceService
                 return ['result' => self::RESULT_DUPLICATE, 'attendance' => $attendance];
             }
 
-            $settings = SchoolSetting::current();
+            $settings = SchoolSetting::currentForSchool($student->school_id);
 
             $attendance ??= new Attendance([
                 'student_id' => $student->id,
