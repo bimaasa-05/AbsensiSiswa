@@ -12,15 +12,18 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Parent\DashboardController as ParentDashboardController;
+use App\Http\Controllers\PublicLookupController;
 use App\Http\Controllers\SchoolRegistrationController;
 use App\Http\Controllers\Superadmin\SchoolController as SuperadminSchoolController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return auth()->check()
-        ? redirect()->intended(auth()->user()->isAdmin() ? route('admin.dashboard') : route('parent.dashboard'))
-        : redirect()->route('login');
-});
+Route::get('/', [PublicLookupController::class, 'landing'])->name('landing');
+Route::post('/cek', [PublicLookupController::class, 'check'])
+    ->middleware('throttle:10,1')
+    ->name('lookup.check');
+Route::get('/hasil/{identifier}', [PublicLookupController::class, 'result'])
+    ->middleware('throttle:30,1')
+    ->name('lookup.result');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
