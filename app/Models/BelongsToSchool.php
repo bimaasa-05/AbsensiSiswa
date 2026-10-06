@@ -14,25 +14,49 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 trait BelongsToSchool
 {
+    /**
+     * Pengaman rekursi: auth()->user() sendiri me-query model User,
+     * yang akan memicu scope ini lagi. Tanpa flag ini terjadi
+     * infinite loop → memory habis → 500 kosong tanpa log.
+     */
+    protected static bool $resolvingSchoolScope = false;
+
     public static function bootBelongsToSchool(): void
     {
         static::addGlobalScope('school', function (Builder $query) {
-            $user = auth()->user();
+            $schoolId = static::scopedSchoolId();
 
-            if ($user && ! $user->isSuperAdmin() && $user->school_id) {
-                $query->where($query->getModel()->getTable().'.school_id', $user->school_id);
+            if ($schoolId) {
+                $query->where($query->getModel()->getTable().'.school_id', $schoolId);
             }
         });
 
         static::creating(function ($model) {
-            if (empty($model->school_id)) {
-                $user = auth()->user();
-
-                if ($user && ! $user->isSuperAdmin() && $user->school_id) {
-                    $model->school_id = $user->school_id;
-                }
+            if (empty($model->school_id) && ($schoolId = static::scopedSchoolId())) {
+                $model->school_id = $schoolId;
             }
         });
+    }
+
+    protected static function scopedSchoolId(): ?int
+    {
+        if (static::$resolvingSchoolScope) {
+            return null;
+        }
+
+        static::$resolvingSchoolScope = true;
+
+        try {
+            $user = auth()->user();
+
+            if ($user && ! $user->isSuperAdmin() && $user->school_id) {
+                return (int) $user->school_id;
+            }
+
+            return null;
+        } finally {
+            static::$resolvingSchoolScope = false;
+        }
     }
 
     public function school(): BelongsTo
