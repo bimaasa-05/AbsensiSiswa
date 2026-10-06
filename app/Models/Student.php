@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 
 class Student extends Model
 {
+    use BelongsToSchool;
+
     public const STATUS_ACTIVE = 'active';
     public const STATUS_INACTIVE = 'inactive';
 
@@ -16,6 +18,7 @@ class Student extends Model
     public const GENDER_FEMALE = 'P';
 
     protected $fillable = [
+        'school_id',
         'nis',
         'nisn',
         'name',
