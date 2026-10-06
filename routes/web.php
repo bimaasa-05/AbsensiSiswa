@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Parent\DashboardController as ParentDashboardController;
+use App\Http\Controllers\SchoolRegistrationController;
 use App\Http\Controllers\Superadmin\SchoolController as SuperadminSchoolController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,12 @@ Route::get('/absensi', [AttendanceController::class, 'scanner'])->name('attendan
 Route::post('/absensi/scan', [AttendanceController::class, 'scan'])
     ->middleware('throttle:60,1')
     ->name('attendance.scan');
+
+Route::get('/daftar-sekolah', [SchoolRegistrationController::class, 'create'])->name('schools.register');
+Route::post('/daftar-sekolah', [SchoolRegistrationController::class, 'store'])
+    ->middleware('throttle:10,1')
+    ->name('schools.register.store');
+Route::get('/daftar-sekolah/berhasil', [SchoolRegistrationController::class, 'success'])->name('schools.register.success');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
