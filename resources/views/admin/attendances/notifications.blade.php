@@ -26,7 +26,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Terapkan</button>
+                <button type="submit" class="btn btn-sm btn-secondary">Terapkan</button>
                 <a href="{{ route('admin.attendances.notifications') }}" class="btn btn-sm btn-link">Atur ulang</a>
             </div>
         </form>
