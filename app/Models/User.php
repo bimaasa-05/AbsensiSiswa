@@ -14,7 +14,6 @@ class User extends Authenticatable
     use HasFactory, Notifiable, BelongsToSchool;
 
     public const ROLE_ADMIN = 'admin';
-    public const ROLE_PARENT = 'parent';
     public const ROLE_SUPERADMIN = 'superadmin';
 
     public const STATUS_ACTIVE = 'active';
@@ -61,11 +60,6 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->role === self::ROLE_ADMIN;
-    }
-
-    public function isParent(): bool
-    {
-        return $this->role === self::ROLE_PARENT;
     }
 
     public function isSuperAdmin(): bool

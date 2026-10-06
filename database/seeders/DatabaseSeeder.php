@@ -42,16 +42,5 @@ class DatabaseSeeder extends Seeder
                 'school_id' => School::first()?->id,
             ]
         );
-
-        User::updateOrCreate(
-            ['email' => 'orangtua@example.com'],
-            [
-                'name' => 'Orang Tua Contoh',
-                'password' => 'password',
-                'role' => User::ROLE_PARENT,
-                'status' => User::STATUS_ACTIVE,
-                'guardian_id' => Guardian::first()?->id,
-            ]
-        );
     }
 }
