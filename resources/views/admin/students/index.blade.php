@@ -28,7 +28,7 @@
                 </select>
             </div>
             <div class="col-md-4">
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Cari</button>
+                <button type="submit" class="btn btn-sm btn-secondary"><i class="bi bi-search me-1"></i>Cari</button>
                 <a href="{{ route('admin.students.index') }}" class="btn btn-sm btn-link">Atur ulang</a>
             </div>
         </form>
