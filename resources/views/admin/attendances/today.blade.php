@@ -74,7 +74,7 @@
                                 </span>
                             </td>
                             <td class="text-end pe-3">
-                                <a href="{{ route('admin.corrections.edit', $attendance) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-square me-1"></i>Koreksi</a>
+                                <a href="{{ route('admin.corrections.edit', $attendance) }}" class="btn btn-sm btn-accent"><i class="bi bi-pencil-square me-1"></i>Koreksi</a>
                             </td>
                         </tr>
                     @empty
