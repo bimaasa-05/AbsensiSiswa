@@ -11,10 +11,11 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, BelongsToSchool;
 
     public const ROLE_ADMIN = 'admin';
     public const ROLE_PARENT = 'parent';
+    public const ROLE_SUPERADMIN = 'superadmin';
 
     public const STATUS_ACTIVE = 'active';
     public const STATUS_INACTIVE = 'inactive';
@@ -31,6 +32,7 @@ class User extends Authenticatable
         'role',
         'status',
         'guardian_id',
+        'school_id',
     ];
 
     /**
@@ -64,6 +66,11 @@ class User extends Authenticatable
     public function isParent(): bool
     {
         return $this->role === self::ROLE_PARENT;
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === self::ROLE_SUPERADMIN;
     }
 
     public function isActive(): bool
