@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AttendanceController extends Controller
 {
@@ -245,50 +244,6 @@ class AttendanceController extends Controller
                 ? (SchoolClass::find($validated['class_id'])->name ?? '-')
                 : 'Semua Kelas',
         ])->download("rekap-absensi-{$start}-sampai-{$end}.pdf");
-    }
-
-    public function exportRecap(Request $request): StreamedResponse
-    {
-        $validated = $request->validate([
-            'start_date' => ['nullable', 'date'],
-            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
-            'class_id' => ['nullable', 'exists:classes,id'],
-        ]);
-
-        $start = $validated['start_date'] ?? today()->startOfMonth()->toDateString();
-        $end = $validated['end_date'] ?? today()->toDateString();
-
-        $students = Student::with(['schoolClass'])
-            ->when(! empty($validated['class_id'] ?? null), fn ($query) => $query->where('class_id', $validated['class_id']))
-            ->where('status', Student::STATUS_ACTIVE)
-            ->orderBy('name')
-            ->get();
-
-        $filename = "rekap-absensi-{$start}-sampai-{$end}.csv";
-
-        return response()->streamDownload(function () use ($students, $start, $end) {
-            $handle = fopen('php://output', 'w');
-            fputcsv($handle, ['Nama', 'NIS', 'Kelas', 'Hadir', 'Terlambat', 'Izin', 'Sakit', 'Alpha']);
-
-            foreach ($students as $student) {
-                $statuses = Attendance::where('student_id', $student->id)
-                    ->whereBetween('attendance_date', [$start, $end])
-                    ->pluck('status');
-
-                fputcsv($handle, [
-                    $student->name,
-                    $student->nis,
-                    $student->schoolClass->name ?? '-',
-                    $statuses->where(fn ($s) => $s === Attendance::STATUS_PRESENT)->count(),
-                    $statuses->where(fn ($s) => $s === Attendance::STATUS_LATE)->count(),
-                    $statuses->where(fn ($s) => $s === Attendance::STATUS_PERMISSION)->count(),
-                    $statuses->where(fn ($s) => $s === Attendance::STATUS_SICK)->count(),
-                    $statuses->where(fn ($s) => $s === Attendance::STATUS_ABSENT)->count(),
-                ]);
-            }
-
-            fclose($handle);
-        }, $filename, ['Content-Type' => 'text/csv']);
     }
 
     protected function statusOptions(): array
