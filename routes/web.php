@@ -11,7 +11,6 @@ use App\Http\Controllers\Admin\SchoolSettingController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Parent\DashboardController as ParentDashboardController;
 use App\Http\Controllers\PublicLookupController;
 use App\Http\Controllers\SchoolRegistrationController;
 use App\Http\Controllers\Superadmin\SchoolController as SuperadminSchoolController;
@@ -83,10 +82,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/admin/holidays', HolidayController::class)
         ->names('admin.holidays')
         ->except(['show']);
-});
-
-Route::middleware(['auth', 'role:parent'])->group(function () {
-    Route::get('/orang-tua/dashboard', [ParentDashboardController::class, 'index'])->name('parent.dashboard');
 });
 
 Route::middleware(['auth', 'role:superadmin'])->prefix('/superadmin')->name('superadmin.')->group(function () {
