@@ -52,12 +52,12 @@
                                 @endif
                             </td>
                             <td class="text-end pe-3">
-                                <a href="{{ route('admin.classes.edit', $class) }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil me-1"></i>Ubah</a>
+                                <a href="{{ route('admin.classes.edit', $class) }}" class="btn btn-sm btn-accent"><i class="bi bi-pencil me-1"></i>Ubah</a>
                                 <form method="POST" action="{{ route('admin.classes.destroy', $class) }}" class="d-inline"
                                     onsubmit="return confirm('Hapus kelas {{ $class->name }}?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash me-1"></i>Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash me-1"></i>Hapus</button>
                                 </form>
                             </td>
                         </tr>
