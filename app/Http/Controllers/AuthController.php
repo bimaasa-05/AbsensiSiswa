@@ -45,7 +45,25 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
 
+        if ($user->isAdmin()) {
+            $school = $user->school;
+
+            if (! $school || ! $school->isApproved()) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'email' => 'Sekolah Anda belum disetujui. Silakan hubungi superadmin.',
+                ])->onlyInput('email');
+            }
+        }
+
         $request->session()->regenerate();
+
+        if ($user->isSuperAdmin()) {
+            return redirect()->intended(route('superadmin.schools.index'));
+        }
 
         return redirect()->intended(
             $user->isAdmin() ? route('admin.dashboard') : route('parent.dashboard')
