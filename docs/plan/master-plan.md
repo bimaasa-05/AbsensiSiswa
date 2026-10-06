@@ -41,7 +41,16 @@ Kunyit `#C77F0A` / Tinta `#1C2B26`. Font: Plus Jakarta Sans.
 - [x] Export Excel rekap, hari libur (CRUD + penanda dashboard), statistik
       lanjutan (tren 7 hari + per kelas), halaman 403/404, automated test (uji
       manual HTTP menyeluruh tiap tahap sebagai pengganti)
-- [ ] Multi-sekolah (ditunda — effort besar, butuh persetujuan desain skema)
+- [x] Multi-sekolah AKTIF: satu DB + `school_id`, global scope otomatis,
+      NIS unik per sekolah (lihat P6)
+
+## P6. Pivot multi-sekolah + landing NIS (pengganti login ortu)
+
+- [ ] Fase A: skema schools + scope + migrasi data
+- [ ] Fase B: SuperAdmin + registrasi publik + approve + akun admin otomatis
+- [ ] Fase C: landing cek NIS/NISN publik (throttle, data terbatas)
+- [ ] Fase D: pensiunkan login ortu + revisi dokumen
+- [ ] Fase E: verifikasi isolasi antar sekolah + push
 
 ## P4. Paket C — WA nyata (butuh API key pemilik)
 
