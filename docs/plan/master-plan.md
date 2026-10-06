@@ -1,4 +1,4 @@
-# MASTER PLAN — Sistem Monitoring Kehadiran Siswa
+  # MASTER PLAN — Sistem Monitoring Kehadiran Siswa
 
 Legenda: `[x]` selesai, `[ ]` belum. Diperbarui setiap tahap selesai.
 
@@ -47,6 +47,13 @@ Kunyit `#C77F0A` / Tinta `#1C2B26`. Font: Plus Jakarta Sans.
 
 - [ ] Daftar fonnte.com → connect device (scan QR, nomor kedua) → token →
       adaptasi service → uji scan → worker permanen
+
+## P5. Tombol + PDF download langsung
+
+- [x] Skema warna tombol (Ubah kunyit, Hapus merah solid, Excel hijau,
+      PDF merah, filter abu solid, QR/cetak outline-dark)
+- [x] PDF download langsung via dompdf (kop dari Pengaturan + tanda tangan)
+- [x] Hapus tombol dan endpoint CSV
 
 ## Catatan keputusan
 
