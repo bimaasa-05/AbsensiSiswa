@@ -21,7 +21,7 @@
                 </select>
             </div>
             <div class="col-md-4">
-                <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="bi bi-funnel me-1"></i>Terapkan</button>
+                <button type="submit" class="btn btn-sm btn-secondary"><i class="bi bi-funnel me-1"></i>Terapkan</button>
                 <a href="{{ route('admin.attendances.missing') }}" class="btn btn-sm btn-link">Atur ulang</a>
             </div>
         </form>
