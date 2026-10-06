@@ -55,7 +55,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/attendances/missing', [AdminAttendanceController::class, 'missing'])->name('admin.attendances.missing');
     Route::get('/admin/attendances/history', [AdminAttendanceController::class, 'history'])->name('admin.attendances.history');
     Route::get('/admin/attendances/recap', [AdminAttendanceController::class, 'recap'])->name('admin.attendances.recap');
-    Route::get('/admin/attendances/recap/export', [AdminAttendanceController::class, 'exportRecap'])->name('admin.attendances.recap.export');
     Route::get('/admin/attendances/recap/excel', [AdminAttendanceController::class, 'exportExcel'])->name('admin.attendances.recap.excel');
     Route::get('/admin/attendances/recap/print', [AdminAttendanceController::class, 'print'])->name('admin.attendances.recap.print');
     Route::get('/admin/attendances/recap/pdf', [AdminAttendanceController::class, 'downloadPdf'])->name('admin.attendances.recap.pdf');
