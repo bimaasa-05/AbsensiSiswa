@@ -46,11 +46,16 @@ Kunyit `#C77F0A` / Tinta `#1C2B26`. Font: Plus Jakarta Sans.
 
 ## P6. Pivot multi-sekolah + landing NIS (pengganti login ortu)
 
-- [ ] Fase A: skema schools + scope + migrasi data
-- [ ] Fase B: SuperAdmin + registrasi publik + approve + akun admin otomatis
-- [ ] Fase C: landing cek NIS/NISN publik (throttle, data terbatas)
-- [ ] Fase D: pensiunkan login ortu + revisi dokumen
-- [ ] Fase E: verifikasi isolasi antar sekolah + push
+- [x] Fase A: schools + school_id + scope otomatis + NIS unik per sekolah +
+      migrasi data existing (fix rekursi scope saat auth)
+- [x] Fase B: SuperAdmin + registrasi publik + approve (akun admin otomatis) /
+      tolak beralasan + sidebar berbasis role
+- [x] Fase C: landing cek NIS/NISN publik (throttle, hanya status hari ini +
+      7 hari, tanpa data sensitif, tanpa link login admin)
+- [x] Fase D: pensiunkan login ortu total (route, controller, view, role,
+      user) + revisi README
+- [x] Fase E: verifikasi isolasi (admin hanya lihat sekolahnya, cross-school
+      404, superadmin lihat semua, approve flow) + push
 
 ## P4. Paket C — WA nyata (butuh API key pemilik)
 
