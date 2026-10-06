@@ -42,10 +42,12 @@ php artisan serve
 
 ## Akun demo (password: `password`)
 
-| Peran      | Email                  |
-|------------|------------------------|
-| Admin      | `admin@sekolah.sch.id` |
-| Orang tua  | `orangtua@example.com` |
+| Peran       | Email                   |
+|-------------|-------------------------|
+| Superadmin  | `superadmin@absensi.id` |
+| Admin       | `admin@sekolah.sch.id`  |
+
+Orang tua tidak perlu login — cek kehadiran via halaman utama dengan NIS/NISN.
 
 ## Menjalankan antrean notifikasi
 
