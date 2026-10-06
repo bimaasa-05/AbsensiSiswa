@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -35,6 +36,17 @@ class Attendance extends Model
         return [
             'attendance_date' => 'date',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::addGlobalScope('school', function (Builder $query) {
+            $user = auth()->user();
+
+            if ($user && ! $user->isSuperAdmin() && $user->school_id) {
+                $query->whereHas('student', fn ($q) => $q->withoutGlobalScope('school')->where('students.school_id', $user->school_id));
+            }
+        });
     }
 
     public function student(): BelongsTo
