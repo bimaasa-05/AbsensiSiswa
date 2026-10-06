@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Parent\DashboardController as ParentDashboardController;
+use App\Http\Controllers\Superadmin\SchoolController as SuperadminSchoolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -76,4 +77,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:parent'])->group(function () {
     Route::get('/orang-tua/dashboard', [ParentDashboardController::class, 'index'])->name('parent.dashboard');
+});
+
+Route::middleware(['auth', 'role:superadmin'])->prefix('/superadmin')->name('superadmin.')->group(function () {
+    Route::get('/schools', [SuperadminSchoolController::class, 'index'])->name('schools.index');
+    Route::get('/schools/{school}', [SuperadminSchoolController::class, 'show'])->name('schools.show');
+    Route::post('/schools/{school}/approve', [SuperadminSchoolController::class, 'approve'])->name('schools.approve');
+    Route::post('/schools/{school}/reject', [SuperadminSchoolController::class, 'reject'])->name('schools.reject');
 });
