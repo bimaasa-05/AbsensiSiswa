@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class AttendanceController extends Controller
 {
@@ -203,7 +204,7 @@ class AttendanceController extends Controller
         );
     }
 
-    public function downloadPdf(Request $request): BinaryFileResponse
+    public function downloadPdf(Request $request): Response
     {
         $validated = $request->validate([
             'start_date' => ['nullable', 'date'],
