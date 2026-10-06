@@ -65,9 +65,17 @@ class AuthController extends Controller
             return redirect()->intended(route('superadmin.schools.index'));
         }
 
-        return redirect()->intended(
-            $user->isAdmin() ? route('admin.dashboard') : route('parent.dashboard')
-        );
+        if ($user->isAdmin()) {
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return back()->withErrors([
+            'email' => 'Akun Anda tidak memiliki akses masuk.',
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request): RedirectResponse
