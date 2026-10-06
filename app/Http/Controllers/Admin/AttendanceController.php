@@ -11,6 +11,7 @@ use App\Models\SchoolSetting;
 use App\Models\Student;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -71,7 +72,7 @@ class AttendanceController extends Controller
         $validated = $request->validate([
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
-            'student_id' => ['nullable', 'exists:students,id'],
+            'student_id' => ['nullable', Rule::exists('students', 'id')->where('school_id', auth()->user()?->school_id)],
         ]);
 
         $attendances = $this->baseQuery($request)
@@ -97,7 +98,7 @@ class AttendanceController extends Controller
         $validated = $request->validate([
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
-            'class_id' => ['nullable', 'exists:classes,id'],
+            'class_id' => ['nullable', Rule::exists('classes', 'id')->where('school_id', auth()->user()?->school_id)],
         ]);
 
         $start = $validated['start_date'] ?? today()->startOfMonth()->toDateString();
@@ -137,7 +138,7 @@ class AttendanceController extends Controller
         $validated = $request->validate([
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
-            'class_id' => ['nullable', 'exists:classes,id'],
+            'class_id' => ['nullable', Rule::exists('classes', 'id')->where('school_id', auth()->user()?->school_id)],
         ]);
 
         $start = $validated['start_date'] ?? today()->startOfMonth()->toDateString();
@@ -192,7 +193,7 @@ class AttendanceController extends Controller
         $validated = $request->validate([
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
-            'class_id' => ['nullable', 'exists:classes,id'],
+            'class_id' => ['nullable', Rule::exists('classes', 'id')->where('school_id', auth()->user()?->school_id)],
         ]);
 
         $start = $validated['start_date'] ?? today()->startOfMonth()->toDateString();
@@ -209,7 +210,7 @@ class AttendanceController extends Controller
         $validated = $request->validate([
             'start_date' => ['nullable', 'date'],
             'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
-            'class_id' => ['nullable', 'exists:classes,id'],
+            'class_id' => ['nullable', Rule::exists('classes', 'id')->where('school_id', auth()->user()?->school_id)],
         ]);
 
         $start = $validated['start_date'] ?? today()->startOfMonth()->toDateString();
