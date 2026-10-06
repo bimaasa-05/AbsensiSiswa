@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SchoolClass extends Model
 {
+    use BelongsToSchool;
+
     protected $table = 'classes';
 
     public const STATUS_ACTIVE = 'active';
     public const STATUS_INACTIVE = 'inactive';
 
     protected $fillable = [
+        'school_id',
         'name',
         'level',
         'major',

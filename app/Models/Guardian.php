@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Guardian extends Model
 {
+    use BelongsToSchool;
+
     protected $table = 'parents';
 
     public const STATUS_ACTIVE = 'active';
     public const STATUS_INACTIVE = 'inactive';
 
     protected $fillable = [
+        'school_id',
         'name',
         'phone',
         'email',
