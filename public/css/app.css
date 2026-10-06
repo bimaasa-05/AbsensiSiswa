@@ -270,6 +270,27 @@ a {
     --bs-btn-hover-border-color: var(--papan);
 }
 
+.btn-accent {
+    --bs-btn-bg: var(--kunyit);
+    --bs-btn-border-color: var(--kunyit);
+    --bs-btn-color: #1c2b26;
+    --bs-btn-hover-bg: #a96f09;
+    --bs-btn-hover-border-color: #a96f09;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-active-bg: #8f5f07;
+    --bs-btn-active-border-color: #8f5f07;
+    --bs-btn-active-color: #ffffff;
+    font-weight: 600;
+}
+
+.btn {
+    font-weight: 500;
+}
+
+.btn-sm {
+    border-radius: 6px;
+}
+
 .form-control:focus,
 .form-select:focus {
     border-color: var(--papan);
