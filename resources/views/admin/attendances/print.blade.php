@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rekap Absensi — {{ $settings->school_name }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; color: #1c2b26; }
@@ -21,8 +22,8 @@
 </head>
 <body class="p-4">
     <div class="no-print mb-3 d-flex gap-2">
-        <button type="button" class="btn btn-primary btn-sm" onclick="window.print()">Cetak / Simpan PDF</button>
-        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.close()">Tutup</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="window.print()"><i class="bi bi-printer me-1"></i>Cetak</button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.close()"><i class="bi bi-arrow-left me-1"></i>Kembali</button>
     </div>
 
     <div class="kop text-center">
@@ -84,7 +85,6 @@
     </div>
 
     <script>
-        window.addEventListener('load', function () { window.print(); });
         window.onafterprint = function () { window.close(); };
     </script>
 </body>
