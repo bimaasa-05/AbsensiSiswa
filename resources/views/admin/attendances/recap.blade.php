@@ -27,9 +27,19 @@
             <div class="col-md-3">
                 <button type="submit" class="btn btn-sm btn-secondary"><i class="bi bi-funnel me-1"></i>Terapkan</button>
                 <a href="{{ route('admin.attendances.recap.excel', request()->only(['start_date', 'end_date', 'class_id'])) }}" class="btn btn-sm btn-success"><i class="bi bi-file-earmark-spreadsheet me-1"></i>Excel</a>
-                <a href="{{ route('admin.attendances.recap.pdf', request()->only(['start_date', 'end_date', 'class_id'])) }}" class="btn btn-sm btn-danger"><i class="bi bi-file-earmark-pdf me-1"></i>PDF</a>
+                <button type="button" class="btn btn-sm btn-danger" id="btn-print-pdf"><i class="bi bi-file-earmark-pdf me-1"></i>PDF</button>
             </div>
         </form>
+        <script>
+        (function () {
+            var button = document.getElementById('btn-print-pdf');
+            if (!button) return;
+            button.addEventListener('click', function () {
+                var params = new URLSearchParams(window.location.search);
+                window.open('{{ route('admin.attendances.recap.print') }}?' + params.toString(), '_blank');
+            });
+        })();
+        </script>
     </div>
 </div>
 
