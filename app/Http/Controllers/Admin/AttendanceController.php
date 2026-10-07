@@ -9,13 +9,11 @@ use App\Models\NotificationLog;
 use App\Models\SchoolClass;
 use App\Models\SchoolSetting;
 use App\Models\Student;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 class AttendanceController extends Controller
 {
@@ -203,49 +201,6 @@ class AttendanceController extends Controller
             new RecapExport($start, $end, $validated['class_id'] ?? null),
             "rekap-absensi-{$start}-sampai-{$end}.xlsx"
         );
-    }
-
-    public function downloadPdf(Request $request): Response
-    {
-        $validated = $request->validate([
-            'start_date' => ['nullable', 'date'],
-            'end_date' => ['nullable', 'date', 'after_or_equal:start_date'],
-            'class_id' => ['nullable', Rule::exists('classes', 'id')->where('school_id', auth()->user()?->school_id)],
-        ]);
-
-        $start = $validated['start_date'] ?? today()->startOfMonth()->toDateString();
-        $end = $validated['end_date'] ?? today()->toDateString();
-
-        $students = Student::with(['schoolClass'])
-            ->when(! empty($validated['class_id'] ?? null), fn ($query) => $query->where('class_id', $validated['class_id']))
-            ->where('status', Student::STATUS_ACTIVE)
-            ->orderBy('name')
-            ->get();
-
-        $recap = $students->map(function (Student $student) use ($start, $end) {
-            $rows = Attendance::where('student_id', $student->id)
-                ->whereBetween('attendance_date', [$start, $end])
-                ->pluck('status');
-
-            return [
-                'student' => $student,
-                'present' => $rows->where(fn ($s) => $s === Attendance::STATUS_PRESENT)->count(),
-                'late' => $rows->where(fn ($s) => $s === Attendance::STATUS_LATE)->count(),
-                'permission' => $rows->where(fn ($s) => $s === Attendance::STATUS_PERMISSION)->count(),
-                'sick' => $rows->where(fn ($s) => $s === Attendance::STATUS_SICK)->count(),
-                'absent' => $rows->where(fn ($s) => $s === Attendance::STATUS_ABSENT)->count(),
-            ];
-        });
-
-        return Pdf::loadView('admin.attendances.pdf', [
-            'recap' => $recap,
-            'settings' => SchoolSetting::current(),
-            'start' => $start,
-            'end' => $end,
-            'className' => ! empty($validated['class_id'] ?? null)
-                ? (SchoolClass::find($validated['class_id'])->name ?? '-')
-                : 'Semua Kelas',
-        ])->download("rekap-absensi-{$start}-sampai-{$end}.pdf");
     }
 
     protected function statusOptions(): array
